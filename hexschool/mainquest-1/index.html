@@ -15,7 +15,6 @@
 </head>
 
 <body>
-
   <nav class="navbar navbar-dark bg-dark" role="navigation">
     <div class="navbar-header">
       <a class="navbar-brand" href="#">第一週 - 關注點分離 by Johlmike</a>
@@ -26,11 +25,13 @@
       <div class="input-group-prepend">
         <span class="input-group-text">任務清單</span>
       </div>
-      <input type="text" class="form-control" id="input-todoform" placeholder="輸入待辦事項">
+      <input type="text" class="form-control" id="input-todoform" placeholder="輸入待辦任務">
       <div class="input-group-append">
         <button type="button" class="btn btn-large btn-block btn-primary" id="btn-todoform">新增</button>
       </div>
     </div>
+    <!-- 任務清單的ul排版有參考範例，一直無法讓x按鈕順利靠右 -->
+    <!-- JavaScript的編寫很順利，主要花很多時間在查css和bootstrap來排版 -->
     <ul class="list-group my-2 col-sm-6 offset-3" id="list-todolist"></ul>
     <div class="d-flex col-sm-6 offset-3">
       <div>

@@ -1,8 +1,10 @@
 'use strict';
 
 (function (window, document) {
+  // 陣列清單
   let todolist = [];
 
+  // 綁定事件
   document.querySelector('#btn-todoform').addEventListener('click', addTodo);
   document.querySelector('#input-todoform').addEventListener('keyup', e => e.keyCode === 13 ? addTodo() : false);
   document.querySelector('#list-todolist').addEventListener('click', function (e) {
@@ -15,6 +17,7 @@
   });
   document.querySelector('#clear-todolist').addEventListener('click', deleteAllTodo);
 
+  // 新增任務
   function addTodo() {
     let inputElem = document.querySelector("#input-todoform");
     let todo = {
@@ -27,29 +30,28 @@
       render();
     }
   }
-
+  // 刪除任務
   function deleteTodo(e) {
     let index = e.target.getAttribute('data-id');
     todolist.splice(index, 1);
     render();
   }
-
+  // 刪除所有任務
+  function deleteAllTodo() {
+    todolist = [];
+    render();
+  }
+  // 更新任務
   function updateTodo(e) {
     let index = e.target.getAttribute('data-id');
-    if (!todolist[index].finish){
+    if (!todolist[index].finish) {
       todolist[index].finish = true;
     } else {
       todolist[index].finish = false;
     }
     render();
   }
-
-  function deleteAllTodo(){
-    todolist = [];
-    render();
-  }
-
-
+  // 渲染畫面
   function render() {
     let list = document.querySelector('#list-todolist');
     let html = ``;

@@ -15,36 +15,37 @@
 </head>
 
 <body>
-  <nav class="navbar navbar-dark bg-dark" role="navigation">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="#">第一週 - 關注點分離 by Johlmike</a>
+  <div class="container">
+    <nav class="row navbar navbar-dark bg-dark" role="navigation">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">第一週 - 關注點分離 by Johlmike</a>
+      </div>
+    </nav>
+    <div class="row pt-3">
+      <div class="input-group col-md-6 offset-md-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text">任務清單</span>
+        </div>
+        <input type="text" class="form-control" id="input-todoform" placeholder="輸入待辦任務">
+        <div class="input-group-append">
+          <button type="button" class="btn btn-large btn-block btn-primary" id="btn-todoform">新增</button>
+        </div>
+      </div>
+      <!-- 任務清單的ul排版有參考範例，一直無法讓x按鈕順利靠右 -->
+      <!-- JavaScript的編寫很順利，主要花很多時間在查css和bootstrap來排版 -->
+      <ul class="list-group my-2 col-md-6 offset-3" id="list-todolist"></ul>
+      <div class="d-flex col-md-6 offset-md-3">
+        <div>
+          目前有 <span id="number-todolist">0</span> 筆任務
+        </div>
+        <div class="mx-auto">
+          已完成 <span id="finish-todolist">0</span> 筆任務
+        </div>
+        <div class="ml-auto text-danger cursor-pointer" id="clear-todolist">
+          清除所有任務
+        </div>
+      </div>
     </div>
-  </nav>
-  <div class="container pt-3">
-    <div class="input-group col-md-6 offset-md-3 pl-0">
-      <div class="input-group-prepend">
-        <span class="input-group-text">任務清單</span>
-      </div>
-      <input type="text" class="form-control" id="input-todoform" placeholder="輸入待辦任務">
-      <div class="input-group-append">
-        <button type="button" class="btn btn-large btn-block btn-primary" id="btn-todoform">新增</button>
-      </div>
-    </div>
-    <!-- 任務清單的ul排版有參考範例，一直無法讓x按鈕順利靠右 -->
-    <!-- JavaScript的編寫很順利，主要花很多時間在查css和bootstrap來排版 -->
-    <ul class="list-group my-2 col-md-6 offset-3" id="list-todolist"></ul>
-    <div class="d-flex col-md-6 offset-md-3">
-      <div>
-        目前有 <span id="number-todolist">0</span> 筆任務
-      </div>
-      <div class="mx-auto">
-        已完成 <span id="finish-todolist">0</span> 筆任務
-      </div>
-      <div class="ml-auto text-danger cursor-pointer" id="clear-todolist">
-        清除所有任務
-      </div>
-    </div>
-
   </div>
 
 

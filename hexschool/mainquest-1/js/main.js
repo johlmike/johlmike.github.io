@@ -1,20 +1,23 @@
 'use strict';
 
 (function (window, document) {
-  // 陣列清單
+  // 任務清單
   let todolist = [];
 
-  // 綁定事件
+  // 綁定新增任務事件（點擊按鈕 及 按下enter）
   document.querySelector('#btn-todoform').addEventListener('click', addTodo);
   document.querySelector('#input-todoform').addEventListener('keyup', e => e.keyCode === 13 ? addTodo() : false);
+  // 綁定刪除任務事件
   document.querySelector('#list-todolist').addEventListener('click', function (e) {
     if (e.target.nodeName === "I") {
       deleteTodo(e);
     }
   });
+  // 綁定更新任務事件
   document.querySelector('#list-todolist').addEventListener('change', function (e) {
     updateTodo(e);
   });
+  // 綁定刪除所有任務事件
   document.querySelector('#clear-todolist').addEventListener('click', deleteAllTodo);
 
   // 新增任務

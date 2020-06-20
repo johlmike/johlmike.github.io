@@ -23,6 +23,7 @@
     let todo = {
       finish: false,
     };
+    // 檢查空白
     if (inputElem.value) {
       todo.name = inputElem.value;
       todolist.push(todo);
@@ -71,6 +72,7 @@
       `
     });
     list.innerHTML = html;
+    // 更新總任務數量與完成任務數量
     document.querySelector('#number-todolist').innerHTML = todolist.length;
     document.querySelector('#finish-todolist').innerHTML = todolist.filter(todo => todo.finish === true).length;
   }

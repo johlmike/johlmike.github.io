@@ -24,7 +24,7 @@
   <div class="container pt-3">
     <div class="input-group col-sm-6 offset-3 pl-0">
       <div class="input-group-prepend">
-        <span class="input-group-text">待辦事項</span>
+        <span class="input-group-text">任務清單</span>
       </div>
       <input type="text" class="form-control" id="input-todoform" placeholder="輸入待辦事項">
       <div class="input-group-append">
@@ -36,7 +36,10 @@
       <div>
         目前有 <span id="number-todolist">0</span> 筆任務
       </div>
-      <div class="ml-auto text-danger cursor-pointer">
+      <div class="mx-auto">
+        已完成 <span id="finish-todolist">0</span> 筆任務
+      </div>
+      <div class="ml-auto text-danger cursor-pointer" id="clear-todolist">
         清除所有任務
       </div>
     </div>

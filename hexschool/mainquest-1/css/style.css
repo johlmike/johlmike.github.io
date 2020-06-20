@@ -5,3 +5,7 @@
 .cursor-pointer:hover {
   opacity: 0.5;
 }
+
+.line-through {
+  text-decoration: line-through;
+}

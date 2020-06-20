@@ -1,22 +1,58 @@
-
 <!DOCTYPE html>
 <html lang="zh-tw">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>第一週 - 關注點分離 by Johlmike</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 
-  </head>
-  <body>
-    <h1 class="text-center">Hello World</h1>
-    
-    <!-- jQuery -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <!-- Bootstrap JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="./js/main.js"></script>
-  </body>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>第一週 - 關注點分離 by Johlmike</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.13.1/css/all.css"
+    integrity="sha384-B9BoFFAuBaCfqw6lxWBZrhg/z4NkwqdBci+E+Sc2XlK/Rz25RYn8Fetb+Aw5irxa" crossorigin="anonymous">
+  <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+
+  <nav class="navbar navbar-dark bg-dark" role="navigation">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">第一週 - 關注點分離 by Johlmike</a>
+    </div>
+  </nav>
+  <div class="container pt-3">
+    <div class="input-group col-sm-6 offset-3 pl-0">
+      <div class="input-group-prepend">
+        <span class="input-group-text">待辦事項</span>
+      </div>
+      <input type="text" class="form-control" id="input-todoform" placeholder="輸入待辦事項">
+      <div class="input-group-append">
+        <button type="button" class="btn btn-large btn-block btn-primary" id="btn-todoform">新增</button>
+      </div>
+    </div>
+    <ul class="list-group my-2 col-sm-6 offset-3" id="list-todolist"></ul>
+    <div class="d-flex col-sm-6 offset-3">
+      <div>
+        目前有 <span id="number-todolist">0</span> 筆任務
+      </div>
+      <div class="ml-auto text-danger cursor-pointer">
+        清除所有任務
+      </div>
+    </div>
+
+  </div>
+
+
+
+
+  <!-- jQuery -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <!-- Bootstrap JavaScript -->
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"
+    integrity="sha384-1CmrxMRARb6aLqgBO7yyAxTOQE2AKb9GfXnEo760AUcUmFx3ibVJJAzGytlQcNXd" crossorigin="anonymous">
+  </script>
+  <script src="./js/main.js"></script>
+</body>
+
 </html>

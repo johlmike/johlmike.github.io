@@ -27,10 +27,8 @@
         <li class="list-group-item">
           <div class="d-flex align-items-center">
             <div class="form-check">
-              <label class="form-check-label">
-                <input type="checkbox" class="form-check-input">
-                <span class="ml-2">${todo.name}</span>
-              </label>
+              <input type="checkbox" class="form-check-input" id="check-item-todolist">
+              <label for="check-item-todolist" class="ml-2 form-check-label">${todo.name}</label>
             </div>
             <div class="ml-auto">
               <i class="fas fa-times cursor-pointer" data-id="${index}"></i>

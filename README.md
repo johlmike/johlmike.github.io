@@ -1,2 +1,3 @@
 # johlmike.github.io
-Johlmike's Github Page : https://johlmike.github.io/hexschool/mainquest-1/
+Github Page列表：
+第一週-關注點分離：https://johlmike.github.io/hexschool/mainquest-1/

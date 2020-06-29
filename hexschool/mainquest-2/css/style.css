@@ -16,6 +16,16 @@
   font-size: 25px;
 }
 
+.category>.active {
+  border-radius: 5px;
+  background-color: #007bff;
+}
+
+.category>.active>a {
+  color: white;
+}
+
+
 .card {
   width: 33%;
 }

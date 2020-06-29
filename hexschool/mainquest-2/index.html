@@ -20,8 +20,14 @@
     </header>
     <div class="banner"></div>
     <ul class="nav category my-3">
-      <li class="nav-item mx-auto" v-for="(item, key) in category">
-        <a class="nav-link" href="#" :key="key" @click.prevent="showCategory(item)">{{item}}</a>
+      <li class="nav-item mx-auto" :class="{active: showDutch}">
+        <a class="nav-link" href="#" @click.prevent="showCategory('道奇兔')">道奇兔</a>
+      </li>
+      <li class="nav-item mx-auto" :class="{active: showLion}">
+        <a class="nav-link" href="#" @click.prevent="showCategory('獅子兔')">獅子兔</a>
+      </li>
+      <li class="nav-item mx-auto" :class="{active: showWhite}">
+        <a class="nav-link" href="#" @click.prevent="showCategory('白兔')">白兔</a>
       </li>
     </ul>
     <div class="product d-flex flex-wrap justify-content-around" v-if="showDutch">

@@ -30,6 +30,10 @@ body {
   color: white;
 }
 
+.adoptBtn {
+  display: inline-block;
+}
+
 @media (max-width: 576px) {
   .banner {
     height: 220px;

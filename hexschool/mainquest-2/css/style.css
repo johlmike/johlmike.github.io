@@ -12,7 +12,7 @@ body {
 
 .banner {
   background-image: url('../img/banner.jpg');
-  height: 400px;
+  height: 550px;
   background-size: cover;
   background-position: right center;
 }

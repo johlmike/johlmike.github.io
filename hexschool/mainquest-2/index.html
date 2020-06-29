@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <title>Title</title>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+  <div id="app" class="container">
+    <header class="navbar">
+      <a class="navbar-brand mx-auto" href="#">米菇認養花園</a>
+    </header>
+    <div class="banner"></div>
+    <ul class="nav category my-3">
+      <li class="nav-item mx-auto" v-for="(item, key) in category">
+        <a class="nav-link" href="#" :key="key" @click.prevent="showCategory(item)">{{item}}</a>
+      </li>
+    </ul>
+    <div class="product d-flex flex-wrap justify-content-around" v-if="showDutch">
+      <div class="card mb-1" v-for="(item, key) in filterDutch" :key="key">
+        <img :src="item.imageUrl" class="card-img-top" alt="item.title">
+        <div class="card-body">
+          <h5 class="card-title">{{item.title}}</h5>
+          <p class="card-text">{{item.content}}</p>
+          <a href="#" class="btn btn-primary">我要認養！</a>
+        </div>
+      </div>
+    </div>
+    <div class="product d-flex flex-wrap justify-content-around" v-if="showLion">
+      <div class="card mb-1" v-for="(item, key) in filterLion" :key="key">
+        <img :src="item.imageUrl" class="card-img-top" alt="item.title">
+        <div class="card-body">
+          <h5 class="card-title">{{item.title}}</h5>
+          <p class="card-text">{{item.content}}</p>
+          <a href="#" class="btn btn-primary">我要認養！</a>
+        </div>
+      </div>
+    </div>
+    <div class="product d-flex flex-wrap justify-content-around" v-if="showWhite">
+      <div class="card mb-1" v-for="(item, key) in filterWhite" :key="key">
+        <img :src="item.imageUrl" class="card-img-top" alt="item.title">
+        <div class="card-body">
+          <h5 class="card-title">{{item.title}}</h5>
+          <p class="card-text">{{item.content}}</p>
+          <a href="#" class="btn btn-primary">我要認養！</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+  </script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.9/dist/vue.js"></script>
+  <script src="./js/main.js" type="module"></script>
+</body>
+
+</html>

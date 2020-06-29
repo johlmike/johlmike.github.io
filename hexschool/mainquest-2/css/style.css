@@ -1,0 +1,21 @@
+.navbar {
+  border-bottom: 1px solid black;
+}
+
+.navbar a {
+  font-size: 30px;
+}
+
+.banner {
+  background-image: url('../img/banner.jpg');
+  height: 450px;
+  background-size: cover;
+}
+
+.category {
+  font-size: 25px;
+}
+
+.card {
+  width: 33%;
+}

@@ -14,49 +14,57 @@
 </head>
 
 <body>
-  <div id="app" class="container">
+  <div id="app">
     <header class="navbar">
       <a class="navbar-brand mx-auto" href="#">米菇認養花園</a>
     </header>
-    <div class="banner"></div>
-    <ul class="nav category my-3">
-      <li class="nav-item mx-auto" :class="{active: showDutch}">
-        <a class="nav-link" href="#" @click.prevent="showCategory('道奇兔')">道奇兔</a>
-      </li>
-      <li class="nav-item mx-auto" :class="{active: showLion}">
-        <a class="nav-link" href="#" @click.prevent="showCategory('獅子兔')">獅子兔</a>
-      </li>
-      <li class="nav-item mx-auto" :class="{active: showWhite}">
-        <a class="nav-link" href="#" @click.prevent="showCategory('白兔')">白兔</a>
-      </li>
-    </ul>
-    <div class="product d-flex flex-wrap justify-content-around" v-if="showDutch">
-      <div class="card mb-1" v-for="(item, key) in filterDutch" :key="key">
-        <img :src="item.imageUrl" class="card-img-top" alt="item.title">
-        <div class="card-body">
-          <h5 class="card-title">{{item.title}}</h5>
-          <p class="card-text">{{item.content}}</p>
-          <a href="#" class="btn btn-primary">我要認養！</a>
+    <div class="container">
+      <div class="banner"></div>
+      <ul class="nav category my-3">
+        <li class="nav-item mx-auto" :class="{active: showDutch}">
+          <a class="nav-link" href="#" @click.prevent="showCategory('道奇兔')">道奇兔</a>
+        </li>
+        <li class="nav-item mx-auto" :class="{active: showLion}">
+          <a class="nav-link" href="#" @click.prevent="showCategory('獅子兔')">獅子兔</a>
+        </li>
+        <li class="nav-item mx-auto" :class="{active: showWhite}">
+          <a class="nav-link" href="#" @click.prevent="showCategory('白兔')">白兔</a>
+        </li>
+      </ul>
+      <div class="row product" v-if="showDutch">
+        <div class="col-md-4 mb-4" v-for="(item, key) in filterDutch" :key="key">
+          <div class="card">
+            <img :src="item.imageUrl" class="card-img-top" alt="item.title">
+            <div class="card-body">
+              <h5 class="card-title">{{item.title}}</h5>
+              <p class="card-text">{{item.content}}</p>
+              <a href="#" class="btn btn-primary">我要認養</a>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="product d-flex flex-wrap justify-content-around" v-if="showLion">
-      <div class="card mb-1" v-for="(item, key) in filterLion" :key="key">
-        <img :src="item.imageUrl" class="card-img-top" alt="item.title">
-        <div class="card-body">
-          <h5 class="card-title">{{item.title}}</h5>
-          <p class="card-text">{{item.content}}</p>
-          <a href="#" class="btn btn-primary">我要認養！</a>
+      <div class="row product" v-if="showLion">
+        <div class="col-md-4 mb-4" v-for="(item, key) in filterLion" :key="key">
+          <div class="card">
+            <img :src="item.imageUrl" class="card-img-top" alt="item.title">
+            <div class="card-body">
+              <h5 class="card-title">{{item.title}}</h5>
+              <p class="card-text">{{item.content}}</p>
+              <a href="#" class="btn btn-primary">我要認養</a>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="product d-flex flex-wrap justify-content-around" v-if="showWhite">
-      <div class="card mb-1" v-for="(item, key) in filterWhite" :key="key">
-        <img :src="item.imageUrl" class="card-img-top" alt="item.title">
-        <div class="card-body">
-          <h5 class="card-title">{{item.title}}</h5>
-          <p class="card-text">{{item.content}}</p>
-          <a href="#" class="btn btn-primary">我要認養！</a>
+      <div class="row product" v-if="showWhite">
+        <div class="col-md-4 mb-4" v-for="(item, key) in filterWhite" :key="key">
+          <div class="card">
+            <img :src="item.imageUrl" class="card-img-top" alt="item.title">
+            <div class="card-body">
+              <h5 class="card-title">{{item.title}}</h5>
+              <p class="card-text">{{item.content}}</p>
+              <a href="#" class="btn btn-primary">我要認養</a>
+            </div>
+          </div>
         </div>
       </div>
     </div>

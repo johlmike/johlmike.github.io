@@ -12,8 +12,9 @@ body {
 
 .banner {
   background-image: url('../img/banner.jpg');
-  height: 450px;
+  height: 400px;
   background-size: cover;
+  background-position: right center;
 }
 
 .category {
@@ -27,4 +28,10 @@ body {
 
 .category>.active>a {
   color: white;
+}
+
+@media (max-width: 576px) {
+  .banner {
+    height: 220px;
+  }
 }

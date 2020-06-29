@@ -3,10 +3,12 @@ let app = new Vue({
   data: {
     appID: "0ace4b59-2bf0-443c-968c-4c9a458d1cb9",
     products: [],
-    category: ['道奇兔', '獅子兔', '白兔'],
     showDutch: true,
     showLion: false,
     showWhite: false,
+    modalImg: "",
+    modalTitle: "",
+    modalContent: "",
   },
   created() {
     const vm = this;
@@ -47,5 +49,13 @@ let app = new Vue({
       }
       return;
     },
+    showModal(e) {
+      const id = e.target.dataset.id;
+      const rabbit = this.products.find(product => product.id === id);
+      this.modalTitle = rabbit.title;
+      this.modalImg = rabbit.imageUrl;
+      this.modalContent = rabbit.content;
+      $('#adoptModal').modal();
+    }
   }
 })

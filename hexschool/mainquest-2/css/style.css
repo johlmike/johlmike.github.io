@@ -1,5 +1,9 @@
+body {
+  background-color: #f8f9fa;
+}
+
 .navbar {
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid #eeeeee;
 }
 
 .navbar a {
@@ -23,9 +27,4 @@
 
 .category>.active>a {
   color: white;
-}
-
-
-.card {
-  /* width: 33%; */
 }

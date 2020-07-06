@@ -74,7 +74,6 @@ const app = new Vue({
       this.products.splice(index, 1);
     },
     toggleHot(index, hot) {
-      console.log(index, hot);
       this.products[index].option.hot = hot;
     }
   },

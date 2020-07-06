@@ -12,6 +12,9 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link href="https://unpkg.com/vuesax@4.0.1-alpha.16/dist/vuesax.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.13.1/css/all.css"
+    integrity="sha384-B9BoFFAuBaCfqw6lxWBZrhg/z4NkwqdBci+E+Sc2XlK/Rz25RYn8Fetb+Aw5irxa" crossorigin="anonymous">
+  </script>
 </head>
 
 <body style="font-family:'微軟正黑體', Arial, Helvetica, sans-serif">
@@ -25,8 +28,8 @@
         <button type="button" class="btn btn-primary" @click="toggleModal('new')">新增商品</button>
       </div>
       <div class="row mt-3">
-        <table class="table">
-          <thead>
+        <table class="table table-bordered">
+          <thead class="thead-dark">
             <tr>
               <th>編號</th>
               <th>分類</th>
@@ -36,6 +39,7 @@
               <th>庫存</th>
               <th>單位</th>
               <th>上架</th>
+              <th>熱門</th>
               <th>編輯</th>
             </tr>
           </thead>
@@ -50,6 +54,12 @@
               <td class="align-middle">{{product.unit}}</td>
               <td class="align-middle">
                 <vs-switch v-model="product.enabled"></vs-switch>
+              </td>
+              <td class="align-middle text-center">
+                <i class="fas fa-fire" style="color:red; cursor: pointer;" @click="toggleHot(index, false)"
+                  v-show="product.option.hot"></i>
+                <i class="fas fal-fire" style="color:red cursor: pointer;" @click="toggleHot(index, true)"
+                  v-show="!product.option.hot"></i>
               </td>
               <td class="align-middle">
                 <div class="btn-group" role="group" aria-label="Basic example">
@@ -131,8 +141,7 @@
                   <div class="form-row">
                     <div class="col">
                       <label for="content">商品敘述</label>
-                      <textarea class="form-control" id="content" rows="3"
-                        v-model="editingProduct.content"></textarea>
+                      <textarea class="form-control" id="content" rows="3" v-model="editingProduct.content"></textarea>
                     </div>
                     <div class="col">
                       <label for="description">商品說明</label>

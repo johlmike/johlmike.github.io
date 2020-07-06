@@ -67,7 +67,7 @@
       <div class="modal-dialog modal-xl">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title">{{editProduct.title ? editProduct.title : "【新增商品】"}}</h5>
+            <h5 class="modal-title">{{editingProduct.title ? editingProduct.title : "【新增商品】"}}</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -79,34 +79,34 @@
                   <div class="form-group">
                     <label for="imageUrl">圖片網址</label>
                     <input type="text" name="imageUrl" id="imageUrl" class="form-control"
-                      v-model="editProduct.imageUrl">
+                      v-model="editingProduct.imageUrl">
                   </div>
-                  <img :src="editProduct.imageUrl" :alt="editProduct.title" class="img-fluid">
+                  <img :src="editingProduct.imageUrl" :alt="editingProduct.title" class="img-fluid">
                 </div>
                 <div class="col-sm-8">
                   <div class="form-group">
                     <label for="title">商品名稱</label>
-                    <input type="text" name="title" id="title" class="form-control" v-model="editProduct.title">
+                    <input type="text" name="title" id="title" class="form-control" v-model="editingProduct.title">
                   </div>
                   <div class="form-row">
                     <div class="col">
                       <div class="form-group">
                         <label for="category">商品分類</label>
                         <input type="text" name="category" id="category" class="form-control"
-                          v-model="editProduct.category">
+                          v-model="editingProduct.category">
                       </div>
                     </div>
                     <div class="col">
                       <div class="form-group">
                         <label for="stock">庫存</label>
-                        <input type="number" name="stock" id="stock" class="form-control" v-model="editProduct.stock"
+                        <input type="number" name="stock" id="stock" class="form-control" v-model="editingProduct.stock"
                           min="0">
                       </div>
                     </div>
                     <div class="col">
                       <div class="form-group">
                         <label for="unit">單位</label>
-                        <input type="text" name="unit" id="unit" class="form-control" v-model="editProduct.unit">
+                        <input type="text" name="unit" id="unit" class="form-control" v-model="editingProduct.unit">
                       </div>
                     </div>
                   </div>
@@ -115,13 +115,13 @@
                       <div class="form-group">
                         <label for="origin_price">原價</label>
                         <input type="text" name="origin_price" id="origin_price" class="form-control"
-                          v-model="editProduct.origin_price">
+                          v-model="editingProduct.origin_price">
                       </div>
                     </div>
                     <div class="col">
                       <div class="form-group">
                         <label for="price">售價</label>
-                        <input type="number" name="price" id="price" class="form-control" v-model="editProduct.price"
+                        <input type="number" name="price" id="price" class="form-control" v-model="editingProduct.price"
                           min="0">
                       </div>
                     </div>
@@ -132,18 +132,18 @@
                     <div class="col">
                       <label for="content">商品敘述</label>
                       <textarea class="form-control" id="content" rows="3"
-                        v-model="editProduct.content"></textarea>
+                        v-model="editingProduct.content"></textarea>
                     </div>
                     <div class="col">
                       <label for="description">商品說明</label>
                       <textarea class="form-control" id="description" rows="3"
-                        v-model="editProduct.description"></textarea>
+                        v-model="editingProduct.description"></textarea>
                     </div>
                   </div>
                   <div class="form-row mt-3">
                     <div class="col">
                       <div class="form-check">
-                        <input class="form-check-input" type="checkbox" v-model="editProduct.enabled" id="enabled">
+                        <input class="form-check-input" type="checkbox" v-model="editingProduct.enabled" id="enabled">
                         <label class="form-check-label" for="enabled">
                           是否上架？
                         </label>
@@ -151,7 +151,7 @@
                     </div>
                     <div class="col">
                       <div class="form-check">
-                        <input class="form-check-input" type="checkbox" v-model="editProduct.option.hot" id="hot">
+                        <input class="form-check-input" type="checkbox" v-model="editingProduct.option.hot" id="hot">
                         <label class="form-check-label" for="hot">
                           是否為熱門商品？
                         </label>
@@ -159,11 +159,11 @@
                     </div>
                   </div>
                   <div class="form-group mt-3" v-show="!creating">
-                    <label>使用者評價 {{editProduct.option.comments.length}} 則</label>
+                    <label>使用者評價 {{editingProduct.option.comments.length}} 則</label>
                     <ul class="list-group">
-                      <li class="list-group-item" v-for="(comment, index) in editProduct.option.comments"
+                      <li class="list-group-item" v-for="(comment, index) in editingProduct.option.comments"
                         :key="'comment_' + index">{{comment}}</li>
-                      <li class="list-group-item" v-show="!editProduct.option.comments[0]">【目前尚未有使用者評價】</li>
+                      <li class="list-group-item" v-show="!editingProduct.option.comments[0]">【目前尚未有使用者評價】</li>
                     </ul>
                   </div>
                 </div>

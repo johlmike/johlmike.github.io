@@ -26,7 +26,7 @@ const app = new Vue({
       }
     },
     products: [],
-    editProduct: {
+    editingProduct: {
       title: "",
       category: "",
       content: "",
@@ -50,23 +50,23 @@ const app = new Vue({
       if (index === "new") {
         this.creating = true;
         // 給予一個空的資料物件
-        this.editProduct = _.cloneDeep(this.productTemplate);
+        this.editingProduct = _.cloneDeep(this.productTemplate);
       } else {
         this.creating = false;
         this.editingIndex = index;
         // 將要編輯的商品內容放入editProduct
-        this.editProduct = _.cloneDeep(this.products[index]);
+        this.editingProduct = _.cloneDeep(this.products[index]);
       }
       $('#productModal').modal('show');
     },
     createProduct() {
-      this.products.push(_.cloneDeep(this.editProduct));
-      this.editProduct = _.cloneDeep(this.productTemplate);
+      this.products.push(_.cloneDeep(this.editingProduct));
+      this.editingProduct = _.cloneDeep(this.productTemplate);
       $('#productModal').modal('hide');
     },
     updateProduct() {
       Object.keys(this.products[this.editingIndex]).forEach(key => {
-        this.products[this.editingIndex][key] = _.cloneDeep(this.editProduct[key]);
+        this.products[this.editingIndex][key] = _.cloneDeep(this.editingProduct[key]);
       });
       $('#productModal').modal('hide');
     },

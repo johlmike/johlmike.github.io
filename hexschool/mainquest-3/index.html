@@ -159,7 +159,7 @@
                     </div>
                   </div>
                   <div class="form-group mt-3" v-show="!creating">
-                    <label>使用者評價</label>
+                    <label>使用者評價 {{editProduct.option.comments.length}} 則</label>
                     <ul class="list-group">
                       <li class="list-group-item" v-for="(comment, index) in editProduct.option.comments"
                         :key="'comment_' + index">{{comment}}</li>

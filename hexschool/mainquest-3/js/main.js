@@ -9,6 +9,22 @@
 const app = new Vue({
   el: '#app',
   data: {
+    productTemplate: {
+      title: "",
+      category: "",
+      content: "",
+      description: "",
+      imageUrl: "",
+      enabled: true,
+      origin_price: 0,
+      price: 0,
+      unit: "",
+      stock: 0,
+      option: {
+        comments: [],
+        hot: true
+      }
+    },
     products: [],
     editProduct: {
       title: "",
@@ -34,22 +50,7 @@ const app = new Vue({
       if (index === "new") {
         this.creating = true;
         // 給予一個空的資料物件
-        this.editProduct = {
-          title: "",
-          category: "",
-          content: "",
-          description: "",
-          imageUrl: "",
-          enabled: true,
-          origin_price: 0,
-          price: 0,
-          unit: "",
-          stock: 0,
-          option: {
-            comments: [],
-            hot: true
-          }
-        };
+        this.editProduct = _.cloneDeep(this.productTemplate);
       } else {
         this.creating = false;
         this.editingIndex = index;
@@ -60,22 +61,7 @@ const app = new Vue({
     },
     createProduct() {
       this.products.push(_.cloneDeep(this.editProduct));
-      this.editProduct = {
-        title: "",
-        category: "",
-        content: "",
-        description: "",
-        imageUrl: "",
-        enabled: true,
-        origin_price: 0,
-        price: 0,
-        unit: "",
-        stock: 0,
-        option: {
-          comments: [],
-          hot: true
-        }
-      };
+      this.editProduct = _.cloneDeep(this.productTemplate);
       $('#productModal').modal('hide');
     },
     updateProduct() {

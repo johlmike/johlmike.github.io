@@ -54,12 +54,12 @@ const app = new Vue({
         this.creating = false;
         this.editingIndex = index;
         // 將要編輯的商品內容放入editProduct
-        this.editProduct = JSON.parse(JSON.stringify(this.products[index]));
+        this.editProduct = _.cloneDeep(this.products[index]);
       }
       $('#productModal').modal('show');
     },
     createProduct() {
-      this.products.push(JSON.parse(JSON.stringify(this.editProduct)));
+      this.products.push(_.cloneDeep(this.editProduct));
       this.editProduct = {
         title: "",
         category: "",
@@ -80,7 +80,7 @@ const app = new Vue({
     },
     updateProduct() {
       Object.keys(this.products[this.editingIndex]).forEach(key => {
-        this.products[this.editingIndex][key] = JSON.parse(JSON.stringify(this.editProduct[key]));
+        this.products[this.editingIndex][key] = _.cloneDeep(this.editProduct[key]);
       });
       $('#productModal').modal('hide');
     },

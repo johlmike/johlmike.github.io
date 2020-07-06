@@ -163,6 +163,7 @@
                     <ul class="list-group">
                       <li class="list-group-item" v-for="(comment, index) in editProduct.option.comments"
                         :key="'comment_' + index">{{comment}}</li>
+                      <li class="list-group-item" v-show="!editProduct.option.comments[0]">【目前尚未有使用者評價】</li>
                     </ul>
                   </div>
                 </div>

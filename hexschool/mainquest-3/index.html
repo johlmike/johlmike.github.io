@@ -150,19 +150,17 @@
                   </div>
                   <div class="form-row mt-3">
                     <div class="col">
-                      <div class="form-check">
-                        <input class="form-check-input" type="checkbox" v-model="editingProduct.enabled" id="enabled">
-                        <label class="form-check-label" for="enabled">
-                          是否上架？
-                        </label>
+                      <div class="custom-control custom-switch">
+                        <input type="checkbox" class="custom-control-input" id="enabled"
+                          v-model="editingProduct.enabled">
+                        <label class="custom-control-label" for="enabled">是否上架？</label>
                       </div>
                     </div>
                     <div class="col">
-                      <div class="form-check">
-                        <input class="form-check-input" type="checkbox" v-model="editingProduct.option.hot" id="hot">
-                        <label class="form-check-label" for="hot">
-                          是否為熱門商品？
-                        </label>
+                      <div class="custom-control custom-switch">
+                        <input type="checkbox" class="custom-control-input" id="hot"
+                          v-model="editingProduct.option.hot">
+                        <label class="custom-control-label" for="hot">是否為熱門商品？</label>
                       </div>
                     </div>
                   </div>

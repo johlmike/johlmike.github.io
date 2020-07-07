@@ -1,0 +1,18 @@
+body {
+  background-color: azure;
+  font-family: '微軟正黑體', Arial, Helvetica, sans-serif;
+}
+
+.big_top {
+  background: center url("../img/big_top.png");
+  background-size: cover;
+  height: 330px;
+}
+
+.big_top_title {
+  background-color: rgba(0, 0, 0, 0.2);
+  font-size: 40px;
+  font-weight: bold;
+  padding-top: 60px;
+  border-radius: 30px;
+}

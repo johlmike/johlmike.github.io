@@ -6,31 +6,53 @@ const app = new Vue({
     description: "",
     problems: [],
     scores: {},
-    descriptions: {},
+    descriptions: {
+      openness: "",
+      conscientiousness: "",
+      extroversion: "",
+      agreeableness: "",
+      neuroticism: "",
+    },
     degree: {},
     firstTest: true, // 檢查使用者是否第一次測驗
+    activeNavClass: "nav-item nav-link active",
+    unactiveNavClass: "nav-item nav-link",
+    activeTabClass: "tab-pane fade show active",
+    unactiveTabClass: "tab-pane fade show",
   },
   methods: {
     result() {
+      let ready = true;
+      
       this.traits.forEach(trait => {
         const name_1 = `input[name=${trait.slice(0, 1)}1]:checked`;
         const name_2 = `input[name=${trait.slice(0, 1)}2]:checked`;
-        this.scores[trait] = Number($(name_1).val()) + Number($(name_2).val())
+        // 檢查使用者是不是沒有填完
+        if (!$(name_1).val() || !$(name_2).val()){
+          ready = false;
+        } else {
+          this.scores[trait] = Number($(name_1).val()) + Number($(name_2).val())
+        }
       });
-      // 建立chart.js圖表
-      this.createChart();
-      // 如使用者第一次測驗，觸發折疊特效提示使用者
-      if( this.firstTest ){
-        this.firstTest = false;
-        setTimeout(() => {
-          $('#openness-desc').collapse('show');
-        }, 500);
-        setTimeout(() => {
-          $('#openness-desc').collapse('hide');
-        }, 1500);
+
+      if (ready) {
+        // 建立chart.js圖表
+        this.createChart();
+        // 如使用者第一次測驗，觸發折疊特效提示使用者
+        if( this.firstTest ){
+          this.firstTest = false;
+          setTimeout(() => {
+            $('#openness-desc').collapse('show');
+          }, 500);
+          setTimeout(() => {
+            $('#openness-desc').collapse('hide');
+          }, 1500);
+        }
+        // 顯示結果Modal
+        $('#resultModal').modal('show');
+      } else {
+        alert('有題目還沒有回答喔！');
       }
-      // 顯示結果Modal
-      $('#resultModal').modal('show');
     },
     createChart() {
       const ctx = document.getElementById('myChart');

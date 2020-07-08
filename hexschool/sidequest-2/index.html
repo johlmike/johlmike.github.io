@@ -55,36 +55,35 @@
               <div class="container-fluid">
                 <div class="row">
                   <div class="col-sm-6">
-                    <template v-for="(trait, index) in traits">
-                      <div :key="'result_'+index">
-                        <div>
-                          <span class="h3 trait-title" data-toggle="collapse" :href="'#' + trait + '-desc'"
-                            role="button" aria-expanded="false" :aria-controls="'#' + trait + '-desc'">
-                            {{traitsTW[index]}} -
-                            <span v-if="scores[trait] >= degree.high">高</span>
-                            <span v-else-if="scores[trait] >= degree.middle">中</span>
-                            <span v-else>低</span>
-                          </span>
-                        </div>
-                        <div class="collapse" :id="trait + '-desc'">
-                          <div class="card card-body">
-                            <span><strong>特質說明：</strong>{{descriptions[trait].desc}}</span>
-                          </div>
-                        </div>
-                        <div>
-                          <p v-if="scores[trait] >= degree.high"><strong>你的特質：</strong>{{descriptions[trait].high}}</p>
-                          <p v-else-if="scores[trait] == degree.middle">
-                            <strong>你的特質：</strong>{{descriptions[trait].middle}}
-                          </p>
-                          <p v-else><strong>你的特質：</strong>{{descriptions[trait].low}}</p>
-                          <p v-if="scores[trait] == degree.middle">
-                            <strong>高分時的說明：</strong>{{descriptions[trait].high}}
-                            <br>
-                            <strong>低分時的說明：</strong>{{descriptions[trait].low}}
-                          </p>
-                        </div>
+                    <nav>
+                      <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                        <a v-for="(trait, index) in traits"
+                          :class="{'nav-item':true, 'nav-link':true, active:index == 0}" :id="'nav-'+trait+'-tab'"
+                          data-toggle="tab" :href="'#nav-'+trait" role="tab" :aria-controls="'nav-'+trait"
+                          aria-selected="true">{{traitsTW[index]}}</a>
                       </div>
-                    </template>
+                    </nav>
+                    <div class="tab-content" id="nav-tabContent">
+
+                      <div v-for="(trait, index) in traits"
+                        :class="{'tab-pane':true, fade:true, show:true, active:index == 0}" :id="'nav-'+trait"
+                        role="tabpanel" :aria-labelledby="'nav-'+trait+'-tab'" :key="trait+index">
+                        <p class="mt-3"><strong>特質說明：</strong>{{descriptions[trait].desc}}</p>
+                        <p v-if="scores[trait] >= degree.high">
+                          <strong>你的特質：</strong>{{descriptions[trait].high}}
+                        </p>
+                        <p v-else-if="scores[trait] == degree.middle">
+                          <strong>你的特質：</strong>{{descriptions[trait].middle}}
+                        </p>
+                        <p v-else><strong>你的特質：</strong>{{descriptions[trait].low}}</p>
+                        <p v-if="scores[trait] == degree.middle">
+                          <strong>高分時的說明：</strong>{{descriptions[trait].high}}
+                        </p>
+                        <p v-if="scores[trait] == degree.middle">
+                          <strong>高分時的說明：</strong>{{descriptions[trait].high}}
+                        </p>
+                      </div>
+                    </div>
                   </div>
                   <div class="col-sm-6">
                     <canvas id="myChart" width="400" height="400"></canvas>

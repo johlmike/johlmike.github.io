@@ -1,6 +1,7 @@
 body {
   background-color: azure;
   font-family: '微軟正黑體', Arial, Helvetica, sans-serif;
+  scrollbar-width: none;
 }
 
 .big_top {

@@ -30,7 +30,7 @@ const app = new Vue({
         }, 1500);
       }
       // 顯示結果Modal
-        // document.querySelector("#modal-container").style.display = 'block';
+        document.querySelector("#resultModal").style.display = 'block';
         document.querySelector("body").style.overflow = 'hidden';
       $('#resultModal').modal('show');
     },

@@ -4,58 +4,71 @@ const app = new Vue({
     traits: [],
     traitsTW: [],
     description: "",
-    neuroticism: {},
-    extroversion: {},
-    openness: {},
-    agreeableness: {},
-    conscientiousness: {},
-    allProblems: [],
+    problems: [],
+    scores: {},
+    descriptions: {},
+    degree: {},
   },
   methods: {
     result() {
       this.traits.forEach(trait => {
         const name_1 = `input[name=${trait.slice(0, 1)}1]:checked`;
         const name_2 = `input[name=${trait.slice(0, 1)}2]:checked`;
-        this[trait].score = Number($(name_1).val()) + Number($(name_2).val())
+        this.scores[trait] = Number($(name_1).val()) + Number($(name_2).val())
       });
+      // 建立chart.js圖表
       this.createChart();
+      // 觸發折疊特效提示使用者
+      setTimeout(() => {
+        $('#openness-desc').collapse('show');
+      }, 500);
+      setTimeout(() => {
+        $('#openness-desc').collapse('hide');
+      }, 1500);
+      // 顯示結果Modal
       $('#resultModal').modal('show');
     },
     createChart() {
       const ctx = document.getElementById('myChart');
+      const scores = [];
+      const vm = this;
+      this.traits.forEach(trait => {
+        scores.push(vm.scores[trait]);
+      });
       const myChart = new Chart(ctx, {
         type: 'radar',
         data: {
-          labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+          labels: this.traitsTW,
           datasets: [{
-            label: '# of Votes',
-            data: [12, 19, 3, 5, 2, 3],
+            label: '你的五大性格特質',
+            data: scores,
             backgroundColor: [
               'rgba(255, 99, 132, 0.2)',
-              'rgba(54, 162, 235, 0.2)',
-              'rgba(255, 206, 86, 0.2)',
-              'rgba(75, 192, 192, 0.2)',
-              'rgba(153, 102, 255, 0.2)',
-              'rgba(255, 159, 64, 0.2)'
             ],
             borderColor: [
               'rgba(255, 99, 132, 1)',
-              'rgba(54, 162, 235, 1)',
-              'rgba(255, 206, 86, 1)',
-              'rgba(75, 192, 192, 1)',
-              'rgba(153, 102, 255, 1)',
-              'rgba(255, 159, 64, 1)'
             ],
             borderWidth: 1
           }]
         },
         options: {
-          scales: {
-            yAxes: [{
-              ticks: {
-                beginAtZero: true
-              }
-            }]
+          scale: {
+            angleLines: {
+              display: false
+            },
+            ticks: {
+              suggestedMin: 0,
+              suggestedMax: 10,
+              stepSize: 1,
+            },
+            pointLabels: {
+              fontSize: 16,
+            }
+          },
+          legend: {
+            labels: {
+              fontSize: 16,
+            }
           }
         }
       });
@@ -69,16 +82,22 @@ const app = new Vue({
         vm.traits = res.data.traits.en;
         vm.traitsTW = res.data.traits.zh;
         vm.description = res.data.description;
+        vm.degree = res.data.degree;
         vm.traits.forEach(trait => {
-          vm[trait] = res.data.problemList[trait];
+          // 將題目放入題庫陣列
           res.data.problemList[trait].problems.forEach(problem => {
-            vm.allProblems.push(problem);
+            vm.problems.push(problem);
           });
+          // 儲存五大特質說明
+          vm.descriptions[trait] = res.data.problemList[trait].description;
           // 分數初始化
-          vm.$set(vm[trait], "score", 0);
+          vm.$set(vm.scores, trait, 0);
         });
         // 問題洗牌
-        vm.allProblems = shuffle(vm.allProblems);
+        vm.problems = shuffle(vm.problems);
+        // tooltip初始化
+        // $('.result-title').tooltip();
+        
       })
       .catch(error => {
         console.log(error);

@@ -27,7 +27,7 @@
         </div>
         <hr>
         <form class="pt-3 pb-5">
-          <div class="pb-3" v-for="(data, index) in allProblems" :key="'Q_' + index">
+          <div class="pb-3" v-for="(data, index) in problems" :key="'Q_' + index">
             <h3>{{index+1 + '、' + data.problem}}</h3>
             <template v-for="(option, index) in data.options">
               <div class="custom-control custom-radio mb-1">
@@ -48,7 +48,7 @@
         <div class="modal-dialog modal-xl">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title">五大性格特質心理測驗 - 你的個人特質</h5>
+              <h5 class="modal-title">五大性格特質心理測驗 - 關於你的特質</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -56,7 +56,32 @@
             <div class="modal-body">
               <div class="container-fluid">
                 <div class="row">
-                  <div class="col-sm-6">123</div>
+                  <div class="col-sm-6">
+                    <template v-for="(trait, index) in traits">
+                      <div :key="'result_'+index">
+                        <div>
+                          <span class="h3 trait-title" data-toggle="collapse" :href="'#' + trait + '-desc'" role="button" aria-expanded="false"
+                            :aria-controls="'#' + trait + '-desc'">
+                            {{traitsTW[index]}} -
+                            <span v-if="scores[trait] >= degree.high">高</span>
+                            <span v-else-if="scores[trait] >= degree.middle">中</span>
+                            <span v-else>低</span>
+                          </span>
+                        </div>
+                        <div class="collapse" :id="trait + '-desc'">
+                          <div class="card card-body">
+                            <span><strong>特質說明：</strong>{{descriptions[trait].desc}}</span>
+                          </div>
+                        </div>
+                        <div>
+                          <p v-if="scores[trait] >= degree.high"><strong>你的特質：</strong>{{descriptions[trait].high}}</p>
+                          <p v-else-if="scores[trait] >= degree.middle">
+                            <strong>你的特質：</strong>{{descriptions[trait].middle}}</p>
+                          <p v-else><strong>你的特質：</strong>{{descriptions[trait].low}}</p>
+                        </div>
+                      </div>
+                    </template>
+                  </div>
                   <div class="col-sm-6">
                     <canvas id="myChart" width="400" height="400"></canvas>
                   </div>

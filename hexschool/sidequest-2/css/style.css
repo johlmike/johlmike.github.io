@@ -16,3 +16,8 @@ body {
   padding-top: 60px;
   border-radius: 30px;
 }
+
+.trait-title {
+  cursor: pointer;
+  color: darkkhaki;
+}

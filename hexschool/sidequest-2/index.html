@@ -73,9 +73,15 @@
                         </div>
                         <div>
                           <p v-if="scores[trait] >= degree.high"><strong>你的特質：</strong>{{descriptions[trait].high}}</p>
-                          <p v-else-if="scores[trait] >= degree.middle">
-                            <strong>你的特質：</strong>{{descriptions[trait].middle}}</p>
+                          <p v-else-if="scores[trait] == degree.middle">
+                            <strong>你的特質：</strong>{{descriptions[trait].middle}}
+                          </p>
                           <p v-else><strong>你的特質：</strong>{{descriptions[trait].low}}</p>
+                          <p v-if="scores[trait] == degree.middle">
+                            <strong>高分時的說明：</strong>{{descriptions[trait].high}}
+                            <br>
+                            <strong>低分時的說明：</strong>{{descriptions[trait].low}}
+                          </p>
                         </div>
                       </div>
                     </template>

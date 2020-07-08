@@ -40,9 +40,7 @@
           <button type="button" class="btn btn-primary" @click.prevent="result">計算結果</button>
         </form>
       </div>
-
-
-
+      <!-- 結果Modal -->
       <div class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-labelledby="resultModal"
         aria-hidden="true" id="resultModal">
         <div class="modal-dialog modal-xl">
@@ -60,8 +58,8 @@
                     <template v-for="(trait, index) in traits">
                       <div :key="'result_'+index">
                         <div>
-                          <span class="h3 trait-title" data-toggle="collapse" :href="'#' + trait + '-desc'" role="button" aria-expanded="false"
-                            :aria-controls="'#' + trait + '-desc'">
+                          <span class="h3 trait-title" data-toggle="collapse" :href="'#' + trait + '-desc'"
+                            role="button" aria-expanded="false" :aria-controls="'#' + trait + '-desc'">
                             {{traitsTW[index]}} -
                             <span v-if="scores[trait] >= degree.high">高</span>
                             <span v-else-if="scores[trait] >= degree.middle">中</span>
@@ -90,7 +88,6 @@
             </div>
           </div>
         </div>
-
       </div>
     </div>
   </div>

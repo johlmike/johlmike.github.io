@@ -8,6 +8,7 @@ const app = new Vue({
     scores: {},
     descriptions: {},
     degree: {},
+    firstTest: true, // 檢查使用者是否第一次測驗
   },
   methods: {
     result() {
@@ -18,13 +19,15 @@ const app = new Vue({
       });
       // 建立chart.js圖表
       this.createChart();
-      // 觸發折疊特效提示使用者
-      setTimeout(() => {
-        $('#openness-desc').collapse('show');
-      }, 500);
-      setTimeout(() => {
-        $('#openness-desc').collapse('hide');
-      }, 1500);
+      // 如使用者第一次測驗，觸發折疊特效提示使用者
+      if( this.firstTest ){
+        setTimeout(() => {
+          $('#openness-desc').collapse('show');
+        }, 500);
+        setTimeout(() => {
+          $('#openness-desc').collapse('hide');
+        }, 1500);
+      }
       // 顯示結果Modal
       $('#resultModal').modal('show');
     },

@@ -112,6 +112,11 @@ const app = new Vue({
           // 分數初始化
           vm.$set(vm.scores, trait, 0);
         });
+        // 反轉選項順序符合一般問卷邏輯
+        vm.problems.forEach(problem => {
+          problem.options = problem.options.reverse();
+        });
+        vm.problems.forEach();
         // 問題洗牌
         vm.problems = shuffle(vm.problems);
         // tooltip初始化

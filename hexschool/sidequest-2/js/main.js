@@ -15,10 +15,6 @@ const app = new Vue({
     },
     degree: {},
     firstTest: true, // 檢查使用者是否第一次測驗
-    activeNavClass: "nav-item nav-link active",
-    unactiveNavClass: "nav-item nav-link",
-    activeTabClass: "tab-pane fade show active",
-    unactiveTabClass: "tab-pane fade show",
   },
   methods: {
     result() {

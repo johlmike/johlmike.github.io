@@ -21,7 +21,7 @@ const app = new Vue({
       this.createChart();
       // 如使用者第一次測驗，觸發折疊特效提示使用者
       if( this.firstTest ){
-        this.firstTest - false;
+        this.firstTest = false;
         setTimeout(() => {
           $('#openness-desc').collapse('show');
         }, 500);

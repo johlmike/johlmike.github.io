@@ -25,7 +25,3 @@ body::-webkit-scrollbar {
   cursor: pointer;
   color: darkkhaki;
 }
-
-.resultModal::-webkit-scrollbar {
- display: none;
-}

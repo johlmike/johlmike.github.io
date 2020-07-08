@@ -22,13 +22,13 @@
         <div class="big_top d-flex align-items-center justify-content-center">
           <p class="big_top_title col-sm-5 text-center h-75">五大性格特質<br>心理測驗</p>
         </div>
-        <div class="p-3">
+        <div class="p-3" v-cloak>
           {{description}}
         </div>
         <hr>
         <form class="pt-3 pb-5">
           <div class="pb-3" v-for="(data, index) in problems" :key="'Q_' + index">
-            <h3>{{index+1 + '、' + data.problem}}</h3>
+            <h3 v-cloak>{{index+1 + '、' + data.problem}}</h3>
             <template v-for="(option, index) in data.options">
               <div class="custom-control custom-radio mb-1">
                 <input type="radio" :name="data.id" :id="data.id + '_' + index" class="custom-control-input"

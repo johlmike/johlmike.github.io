@@ -74,7 +74,7 @@ const app = new Vue({
               display: false
             },
             ticks: {
-              suggestedMin: 0,
+              suggestedMin: 1,
               suggestedMax: 10,
               stepSize: 1,
             },
@@ -119,9 +119,6 @@ const app = new Vue({
         vm.problems.forEach();
         // 問題洗牌
         vm.problems = shuffle(vm.problems);
-        // tooltip初始化
-        // $('.result-title').tooltip();
-        
       })
       .catch(error => {
         console.log(error);

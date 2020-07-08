@@ -1,3 +1,7 @@
+[v-clock] {
+  display: none !important;
+}
+
 body {
   background-color: azure;
   font-family: '微軟正黑體', Arial, Helvetica, sans-serif;

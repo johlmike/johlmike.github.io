@@ -14,7 +14,6 @@ const app = new Vue({
       neuroticism: "",
     },
     degree: {},
-    firstTest: true, // 檢查使用者是否第一次測驗
   },
   methods: {
     result() {
@@ -34,16 +33,6 @@ const app = new Vue({
       if (ready) {
         // 建立chart.js圖表
         this.createChart();
-        // 如使用者第一次測驗，觸發折疊特效提示使用者
-        if( this.firstTest ){
-          this.firstTest = false;
-          setTimeout(() => {
-            $('#openness-desc').collapse('show');
-          }, 500);
-          setTimeout(() => {
-            $('#openness-desc').collapse('hide');
-          }, 1500);
-        }
         // 顯示結果Modal
         $('#resultModal').modal('show');
       } else {
@@ -85,11 +74,13 @@ const app = new Vue({
             },
             pointLabels: {
               fontSize: 16,
+              fontFamily: "微軟正黑體, Arial, Helvetica, sans-serif",
             }
           },
           legend: {
             labels: {
               fontSize: 16,
+              fontFamily: "微軟正黑體, Arial, Helvetica, sans-serif",
             }
           }
         }

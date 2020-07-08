@@ -1,7 +1,10 @@
 body {
   background-color: azure;
   font-family: '微軟正黑體', Arial, Helvetica, sans-serif;
-  scrollbar-width: none;
+}
+
+body::-webkit-scrollbar {
+  display: none;
 }
 
 .big_top {

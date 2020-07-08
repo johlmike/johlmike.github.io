@@ -36,7 +36,13 @@ const app = new Vue({
         // 顯示結果Modal
         $('#resultModal').modal('show');
       } else {
-        alert('有題目還沒有回答喔！');
+        // 顯示警告訊息
+        document.body.scrollTop = 450;
+        document.documentElement.scrollTop = 450;
+        $('#emptyAlert').fadeIn();
+        setTimeout(() => {
+        $('#emptyAlert').fadeOut();
+        }, 2500);
       }
     },
     createChart() {

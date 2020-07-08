@@ -26,6 +26,9 @@
           {{description}}
         </div>
         <hr>
+        <div class="alert alert-danger alert-dismissible" role="alert" id="emptyAlert">
+          <center><strong>有題目還沒有回答喔！</strong></center>
+        </div>
         <form class="pt-3 pb-5">
           <div class="pb-3" v-for="(data, index) in problems" :key="'Q_' + index">
             <h3 v-cloak>{{index+1 + '、' + data.problem}}</h3>
@@ -37,7 +40,7 @@
               </div>
             </template>
           </div>
-          <button type="button" class="btn btn-primary" @click.prevent="result">計算結果</button>
+          <center><button type="button" class="btn btn-primary" @click.prevent="result">計算結果</button></center>
         </form>
       </div>
       <!-- 結果Modal -->
@@ -107,9 +110,7 @@
 
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
-  </script>
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
     integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
   </script>

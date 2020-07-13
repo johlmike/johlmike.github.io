@@ -52,8 +52,10 @@ const app = new Vue({
           hot: true
         }
       },
-      // 編輯中的編號
+      // 編輯中商品之列表編號（畫面更新）
       editingIndex: 0,
+      // 編輯中商品之id（資料庫更新）
+      editingId: '',
       // 商品列表頁碼
       page: 2,
       // 因新增和編輯共用Modal，故多一個變數，確認觸發之modal是「新增商品」或「編輯商品」
@@ -80,6 +82,7 @@ const app = new Vue({
       $('#productModal').modal('hide');
     },
     updateProduct() {
+      // 為了使vue畫面自動更新，故使用forEach針對物件內每個key去更新資料
       Object.keys(this.products[this.editingIndex]).forEach(key => {
         this.products[this.editingIndex][key] = _.cloneDeep(this.editingProduct[key]);
       });
@@ -94,15 +97,22 @@ const app = new Vue({
         // 給予一個空的資料物件
         this.editingProduct = _.cloneDeep(this.productTemplate);
       } else {
+        // 設定modal為編輯狀態
         this.creating = false;
+        // 儲存編輯中商品之列表編號
         this.editingIndex = index;
+        // 儲存編輯中商品之id
+        this.editingId = this.products[index].id;
         // 將要編輯的商品內容放入editProduct
         this.editingProduct = _.cloneDeep(this.products[index]);
       }
       $('#productModal').modal('show');
     },
     toggleHot(index, hot) {
+      // 更新本地端商品資料
       this.products[index].option.hot = hot;
+      // 更新資料庫商品資料
+      // ...
     }
   },
   created() {

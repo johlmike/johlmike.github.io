@@ -57,7 +57,7 @@ const app = new Vue({
       // 編輯中商品之id（資料庫更新）
       editingId: '',
       // 商品列表頁碼
-      page: 2,
+      page: 1,
       // 因新增和編輯共用Modal，故多一個變數，確認觸發之modal是「新增商品」或「編輯商品」
       // 之後或許調整為將modal元件獨立
       creating: true,
@@ -65,12 +65,13 @@ const app = new Vue({
   },
   methods: {
     getAllProducts() {
+      // 取得所有商品api的url
       const url = `${this.baseUrl}${this.uuid}/admin/ec/products?page=${this.page}`;
+      // 使用get取得所有商品列表
       axios.get(url)
         .then(res => {
           // 將商品列表放入元件的data
           this.products = res.data.data;
-          console.log(res);
         })
         .catch(err => {
           console.log(err.response);
@@ -86,6 +87,18 @@ const app = new Vue({
       Object.keys(this.products[this.editingIndex]).forEach(key => {
         this.products[this.editingIndex][key] = _.cloneDeep(this.editingProduct[key]);
       });
+      // 更新資料庫檔案
+      const url = `${this.baseUrl}${this.uuid}/admin/ec/product/${this.editingId}`;
+      const data = this.products.find( product => {
+        return product.id === this.editingId;
+      });
+      console.log('id', this.editingId);
+      console.log('data', data);
+      axios.patch(url, data).then()
+      .catch( err => {
+        console.log(err.response);
+      });
+      // 自動關閉modal
       $('#productModal').modal('hide');
     },
     deleteProduct(index) {

@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <title>萌兔窩 - 管理後台</title>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link href="https://unpkg.com/vuesax@4.0.1-alpha.16/dist/vuesax.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="./css/all.css">
+  <link rel="stylesheet" href="./css/products.css">
+</head>
+
+<body style="font-family:'微軟正黑體', Arial, Helvetica, sans-serif">
+  <div id="app">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="#">萌兔窩 - 管理後台</a>
+    </nav>
+    <div class="container">
+      <br>
+      <div class="row flex-row-reverse">
+        <button type="button" class="btn btn-primary" @click="toggleModal('new')">新增商品</button>
+      </div>
+      <div class="row mt-3">
+        <table class="table table-bordered">
+          <thead class="thead-dark">
+            <tr>
+              <th>編號</th>
+              <th>分類</th>
+              <th>商品名稱</th>
+              <th>原價</th>
+              <th>售價</th>
+              <th>庫存</th>
+              <th>單位</th>
+              <th>上架</th>
+              <th>熱門</th>
+              <th>編輯</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="(product,index) in products" :key="'product_' + index">
+              <td scope="row" class="align-middle">{{index + 1}}</td>
+              <td class="align-middle">{{product.category}}</td>
+              <td class="align-middle">{{product.title}}</td>
+              <td class="align-middle">{{product.origin_price}}</td>
+              <td class="align-middle">{{product.price}}</td>
+              <td class="align-middle">{{product.stock}}</td>
+              <td class="align-middle">{{product.unit}}</td>
+              <td class="align-middle">
+                <vs-switch v-model="product.enabled"></vs-switch>
+              </td>
+              <td class="align-middle text-center">
+                <i class="fas fa-fire hot-icon" @click="toggleHot(index, false)" v-show="product.option.hot"></i>
+                <i class="fal fa-fire hot-icon" @click="toggleHot(index, true)" v-show="!product.option.hot"></i>
+              </td>
+              <td class="align-middle">
+                <div class="btn-group" role="group" aria-label="Basic example">
+                  <button type="button" class="btn btn-outline-primary" @click="toggleModal(index)">編輯</button>
+                  <button type="button" class="btn btn-outline-danger" @click="deleteProduct(index)">刪除</button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-labelledby="productModal"
+      aria-hidden="true" id="productModal">
+      <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">{{editingProduct.title ? editingProduct.title : "【新增商品】"}}</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="container-fluid">
+              <div class="row">
+                <div class="col-sm-4">
+                  <div class="form-group">
+                    <label for="imageUrl">圖片網址</label>
+                    <input type="text" name="imageUrl" id="imageUrl" class="form-control"
+                      v-model="editingProduct.imageUrl">
+                  </div>
+                  <img :src="editingProduct.imageUrl" :alt="editingProduct.title" class="img-fluid">
+                </div>
+                <div class="col-sm-8">
+                  <div class="form-group">
+                    <label for="title">商品名稱</label>
+                    <input type="text" name="title" id="title" class="form-control" v-model="editingProduct.title">
+                  </div>
+                  <div class="form-row">
+                    <div class="col">
+                      <div class="form-group">
+                        <label for="category">商品分類</label>
+                        <input type="text" name="category" id="category" class="form-control"
+                          v-model="editingProduct.category">
+                      </div>
+                    </div>
+                    <div class="col">
+                      <div class="form-group">
+                        <label for="stock">庫存</label>
+                        <input type="number" name="stock" id="stock" class="form-control" v-model="editingProduct.stock"
+                          min="0">
+                      </div>
+                    </div>
+                    <div class="col">
+                      <div class="form-group">
+                        <label for="unit">單位</label>
+                        <input type="text" name="unit" id="unit" class="form-control" v-model="editingProduct.unit">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-row">
+                    <div class="col">
+                      <div class="form-group">
+                        <label for="origin_price">原價</label>
+                        <input type="text" name="origin_price" id="origin_price" class="form-control"
+                          v-model="editingProduct.origin_price">
+                      </div>
+                    </div>
+                    <div class="col">
+                      <div class="form-group">
+                        <label for="price">售價</label>
+                        <input type="number" name="price" id="price" class="form-control" v-model="editingProduct.price"
+                          min="0">
+                      </div>
+                    </div>
+                    <div class="col">
+                    </div>
+                  </div>
+                  <div class="form-row">
+                    <div class="col">
+                      <label for="content">商品敘述</label>
+                      <textarea class="form-control" id="content" rows="3" v-model="editingProduct.content"></textarea>
+                    </div>
+                    <div class="col">
+                      <label for="description">商品說明</label>
+                      <textarea class="form-control" id="description" rows="3"
+                        v-model="editingProduct.description"></textarea>
+                    </div>
+                  </div>
+                  <div class="form-row mt-3">
+                    <div class="col">
+                      <div class="custom-control custom-switch">
+                        <input type="checkbox" class="custom-control-input" id="enabled"
+                          v-model="editingProduct.enabled">
+                        <label class="custom-control-label" for="enabled">是否上架？</label>
+                      </div>
+                    </div>
+                    <div class="col">
+                      <div class="custom-control custom-switch">
+                        <input type="checkbox" class="custom-control-input" id="hot"
+                          v-model="editingProduct.option.hot">
+                        <label class="custom-control-label" for="hot">是否為熱門商品？</label>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group mt-3" v-show="!creating">
+                    <label>使用者評價 {{editingProduct.option.comments.length}} 則</label>
+                    <ul class="list-group">
+                      <li class="list-group-item" v-for="(comment, index) in editingProduct.option.comments"
+                        :key="'comment_' + index">{{comment}}</li>
+                      <li class="list-group-item" v-show="!editingProduct.option.comments[0]">【目前尚未有使用者評價】</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+            <button type="button" class="btn btn-primary" @click="updateProduct" v-show="!creating">儲存修改</button>
+            <button type="button" class="btn btn-primary" @click="createProduct" v-show="creating">新增商品</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+  </script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://unpkg.com/vuesax@4.0.1-alpha.16/dist/vuesax.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.15/lodash.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="./js/products.js"></script>
+</body>
+
+</html>

@@ -89,11 +89,10 @@ const app = new Vue({
       });
       // 更新資料庫檔案
       const url = `${this.baseUrl}${this.uuid}/admin/ec/product/${this.editingId}`;
-      const data = this.products.find( product => {
+      const data = this.products.find( product => { // 使用editingId查找欲更新的商品
         return product.id === this.editingId;
       });
-      console.log('id', this.editingId);
-      console.log('data', data);
+      // 更新資料庫之商品資料
       axios.patch(url, data).then()
       .catch( err => {
         console.log(err.response);

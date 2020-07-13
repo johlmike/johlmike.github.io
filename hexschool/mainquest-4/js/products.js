@@ -8,58 +8,62 @@
 
 const app = new Vue({
   el: '#app',
-  data: {
-    // api網址
-    baseUrl: 'https://course-ec-api.hexschool.io/api/',
-    // 我的uuid
-    uuid: '0ace4b59-2bf0-443c-968c-4c9a458d1cb9',
-    // 驗證用token
-    token: '',
-    // 空product物件
-    productTemplate: {
-      title: "",
-      category: "",
-      content: "",
-      description: "",
-      imageUrl: "",
-      enabled: true,
-      origin_price: 0,
-      price: 0,
-      unit: "",
-      stock: 0,
-      option: {
-        comments: [],
-        hot: true
-      }
-    },
-    // 商品列表
-    products: [],
-    // 編輯中的商品
-    editingProduct: {
-      title: "",
-      category: "",
-      content: "",
-      description: "",
-      imageUrl: "",
-      enabled: true,
-      origin_price: 0,
-      price: 0,
-      unit: "",
-      stock: 0,
-      option: {
-        comments: [],
-        hot: true
-      }
-    },
-    // 編輯中的編號
-    editingIndex: 0,
-    // 因新增和編輯共用Modal，故多一個變數，確認觸發之modal是「新增商品」或「編輯商品」
-    // 之後或許調整為將modal元件獨立
-    creating: true,
+  data() {
+    return {
+      // api網址
+      baseUrl: 'https://course-ec-api.hexschool.io/api/',
+      // 我的uuid
+      uuid: '0ace4b59-2bf0-443c-968c-4c9a458d1cb9',
+      // 驗證用token
+      token: '',
+      // 商品列表
+      products: [],
+      // 空product物件
+      productTemplate: {
+        title: "",
+        category: "",
+        content: "",
+        description: "",
+        imageUrl: "",
+        enabled: true,
+        origin_price: 0,
+        price: 0,
+        unit: "",
+        stock: 0,
+        option: {
+          comments: [],
+          hot: true
+        }
+      },
+      // 編輯中的商品
+      editingProduct: {
+        title: "",
+        category: "",
+        content: "",
+        description: "",
+        imageUrl: "",
+        enabled: true,
+        origin_price: 0,
+        price: 0,
+        unit: "",
+        stock: 0,
+        option: {
+          comments: [],
+          hot: true
+        }
+      },
+      // 編輯中的編號
+      editingIndex: 0,
+      // 商品列表頁碼
+      page: 2,
+      // 因新增和編輯共用Modal，故多一個變數，確認觸發之modal是「新增商品」或「編輯商品」
+      // 之後或許調整為將modal元件獨立
+      creating: true,
+    };
   },
   methods: {
     getAllProducts() {
-      const url = `${this.baseUrl}${this.uuid}/admin/ec/products`;
+      const url = `${this.baseUrl}${this.uuid}/admin/ec/products?page=${this.page}`;
       axios.get(url)
         .then(res => {
           // 將商品列表放入元件的data

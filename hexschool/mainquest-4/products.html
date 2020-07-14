@@ -24,13 +24,16 @@
     </nav>
     <div class="container">
       <br>
-      <div class="row flex-row-reverse">
+      <div class="row">
+        <div class="mr-auto">
+          <pagination :current-page="page" :total-page="totalPage" @change-page="changePage"></pagination>
+        </div>
         <button type="button" class="btn btn-primary" @click="toggleModal('new')">新增商品</button>
       </div>
       <table-list :products="products" :page="page" @update-product="updateProduct" @toggle-hot="toggleHot"
         @toggle-modal="toggleModal" @delete-product="deleteProduct">
       </table-list>
-      <pagination :current-page="page" :total-page="totalPage" @change-page="changePage"></pagination>
+      
     </div>
     <!-- Modal -->
     <div class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-labelledby="productModal"

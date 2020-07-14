@@ -57,20 +57,41 @@ const app = new Vue({
       // Ajax
       axios.get(url)
         .then(res => {
-          const vm = this;
           this.isLoading = false; // 讀取結束
           this.products = res.data.data; // 將商品列表放入元件的data
           // 將options之String轉換為Object
           this.products.forEach((product, index) => {
             if (product.options) { // 如果該商品有options的話
-              vm.products[index].options = JSON.parse(product.options);
+              this.products[index].options = JSON.parse(product.options);
             }
+            this.getProduct(product.id, data => { // description需要使用單一商品讀取
+              this.products[index].description = data.description;
+            });
           });
+        })
+        .catch(err => {
+          this.isLoading = false; // 讀取結束
+          // error401 表示驗證失敗，跳轉回登入頁面重新登入
+          if (err.response.status === 401) {
+            document.cookie = `moerabbitworld-token=;`;
+            window.location = './index.html';
+          }
+          console.log(err.response);
+        });
+    },
+    getProduct(id, cb) {
+      this.isLoading = true; // 讀取中
+      const url = `${this.baseUrl}${this.uuid}/admin/ec/product/${id}`;
+      axios.get(url)
+        .then(res => {
+          this.isLoading = false; // 讀取結束
+          cb(res.data.data);
         })
         .catch(err => {
           this.isLoading = false; // 讀取結束
           console.log(err.response);
         });
+
     },
     createProduct() {
       this.isLoading = true; // 讀取中

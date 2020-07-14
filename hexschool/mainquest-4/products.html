@@ -70,7 +70,7 @@
                       <div class="form-group">
                         <label for="stock">庫存</label>
                         <input type="number" name="stock" id="stock" class="form-control"
-                          v-model="editingProduct.options.stock" min="0">
+                          v-model.number="editingProduct.options.stock" min="0">
                       </div>
                     </div>
                     <div class="col">
@@ -85,13 +85,14 @@
                       <div class="form-group">
                         <label for="origin_price">原價</label>
                         <input type="number" name="origin_price" id="origin_price" class="form-control"
-                          v-model="editingProduct.origin_price">
+                          v-model.number="editingProduct.origin_price" min="0">
                       </div>
                     </div>
                     <div class="col">
                       <div class="form-group">
                         <label for="price">售價</label>
-                        <input type="number" name="price" id="price" class="form-control" v-model="editingProduct.price"
+                        <input type="number" name="price" id="price" class="form-control"
+                          v-model.number="editingProduct.price"
                           min="0">
                       </div>
                     </div>

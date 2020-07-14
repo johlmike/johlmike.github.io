@@ -68,16 +68,19 @@ const app = new Vue({
           });
         })
         .catch(err => {
+          this.isLoading = false; // 讀取結束
           console.log(err.response);
         });
     },
     createProduct() {
       this.isLoading = true; // 讀取中
+      // 準備Ajax使用之url和data
       const url = `${this.baseUrl}${this.uuid}/admin/ec/product`;
+      const data = _.cloneDeep(this.editingProduct);
       // 將options轉換成字串(為符合後端要求)
-      this.editingProduct.options = JSON.stringify(this.editingProduct.options);
+      data.options = JSON.stringify(data.options);
       // Ajax
-      axios.post(url, this.editingProduct)
+      axios.post(url, data)
         .then(res => {
           this.isLoading = false; // 讀取結束
           this.editingProduct = _.cloneDeep(this.productTemplate); // 將editingProduct清空
@@ -86,6 +89,7 @@ const app = new Vue({
           $('#productModal').modal('hide'); // 自動關閉modal
         })
         .catch(err => {
+          this.isLoading = false; // 讀取結束
           console.log(err.response);
         });
     },
@@ -114,6 +118,7 @@ const app = new Vue({
           $('#productModal').modal('hide'); // 自動關閉modal
         })
         .catch(err => {
+          this.isLoading = false; // 讀取結束
           console.log(err.response);
         });
     },
@@ -127,6 +132,7 @@ const app = new Vue({
           this.getAllProducts(); // 刷新頁面
         })
         .catch(err => {
+          this.isLoading = false; // 讀取結束
           console.log(err.response);
         });
     },

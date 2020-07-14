@@ -1,9 +1,11 @@
 import LoadingPage from '../components/LoadingPage.js';
+import TableList from '../components/TableList.js';
 
 const app = new Vue({
   el: '#app',
   components: {
     LoadingPage,
+    TableList,
   },
   data() {
     return {

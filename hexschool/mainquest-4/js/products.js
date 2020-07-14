@@ -61,7 +61,6 @@ const app = new Vue({
           this.isLoading = false; // 讀取結束
           this.products = res.data.data; // 將商品列表放入元件的data
           // 將options之String轉換為Object
-          console.log(this.products);
           this.products.forEach((product, index) => {
             if (product.options) { // 如果該商品有options的話
               vm.products[index].options = JSON.parse(product.options);
@@ -147,7 +146,7 @@ const app = new Vue({
       // 更新本地端商品資料
       this.products[index].options.hot = hot;
       // 更新資料庫商品資料
-      // ...
+      this.updateProduct(null, index);
     },
   },
   created() {

@@ -1,11 +1,13 @@
 import LoadingPage from '../components/LoadingPage.js';
 import TableList from '../components/TableList.js';
+import Pagination from '../components/Pagination.js';
 
 const app = new Vue({
   el: '#app',
   components: {
     LoadingPage,
     TableList,
+    Pagination,
   },
   data() {
     return {
@@ -45,6 +47,7 @@ const app = new Vue({
       },
       editingIndex: 0,
       editingId: '',
+      totalPage: 1,
       page: 1,
       // 因新增和編輯共用Modal，故多一個變數，確認觸發之modal是「新增商品」或「編輯商品」
       // 之後或許調整為將modal元件獨立
@@ -60,6 +63,7 @@ const app = new Vue({
       axios.get(url)
         .then(res => {
           this.isLoading = false; // 讀取結束
+          this.totalPage = res.data.meta.pagination.total_pages;
           this.products = res.data.data; // 將商品列表放入元件的data
           // 將options之String轉換為Object
           this.products.forEach((product, index) => {
@@ -93,7 +97,6 @@ const app = new Vue({
           this.isLoading = false; // 讀取結束
           console.log(err.response);
         });
-
     },
     createProduct() {
       this.isLoading = true; // 讀取中
@@ -177,6 +180,10 @@ const app = new Vue({
       // 更新資料庫商品資料
       this.updateProduct(null, index);
     },
+    changePage(page) {
+      this.page = page;
+      this.getAllProducts();
+    }
   },
   created() {
     // 元件建立時，嘗試取得Token

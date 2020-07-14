@@ -30,6 +30,7 @@
       <table-list :products="products" :page="page" @update-product="updateProduct" @toggle-hot="toggleHot"
         @toggle-modal="toggleModal" @delete-product="deleteProduct">
       </table-list>
+      <pagination :current-page="page" :total-page="totalPage" @change-page="changePage"></pagination>
     </div>
     <!-- Modal -->
     <div class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-labelledby="productModal"

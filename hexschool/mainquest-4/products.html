@@ -74,22 +74,27 @@
       aria-hidden="true" id="productModal">
       <div class="modal-dialog modal-xl">
         <div class="modal-content">
-          <div class="modal-header">
+          <!-- <div class="modal-header">
             <h5 class="modal-title">{{editingProduct.title ? products[editingIndex].title : "【新增商品】"}}</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
-          </div>
+          </div> -->
           <div class="modal-body">
             <div class="container-fluid">
               <div class="row">
                 <div class="col-sm-4">
-                  <div class="form-group">
-                    <label for="imageUrl">圖片網址</label>
-                    <input type="text" name="imageUrl" id="imageUrl" class="form-control"
-                      v-model="editingProduct.imageUrl">
-                  </div>
-                  <img :src="editingProduct.imageUrl" :alt="editingProduct.title" class="img-fluid">
+                  <!-- 一次最多上傳五張圖片 -->
+                  <template v-for="index in 5">
+                    <div class="form-group" :key="editingProduct.id + '_' + index">
+                      <label :for="'imageUrl' + '_' + index">圖片網址</label>
+                      <input type="text" :id="'imageUrl' + '_' + index" class="form-control"
+                        v-model.lazy="editingProduct.imageUrl[index-1]" @change.lazy="editingProduct.imageUrl = filterImageUrl">
+                    </div>
+                    <img v-show="editingProduct.imageUrl[index-1]" :src="editingProduct.imageUrl[index-1]"
+                      :alt="editingProduct.title + '_' +  index"
+                      class="img-fluid">
+                  </template>
                 </div>
                 <div class="col-sm-8">
                   <div class="form-group">
@@ -122,7 +127,7 @@
                     <div class="col">
                       <div class="form-group">
                         <label for="origin_price">原價</label>
-                        <input type="text" name="origin_price" id="origin_price" class="form-control"
+                        <input type="number" name="origin_price" id="origin_price" class="form-control"
                           v-model="editingProduct.origin_price">
                       </div>
                     </div>

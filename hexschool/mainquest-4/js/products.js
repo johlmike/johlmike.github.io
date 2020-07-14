@@ -24,7 +24,7 @@ const app = new Vue({
         category: "",
         content: "",
         description: "",
-        imageUrl: "",
+        imageUrl: [],
         enabled: true,
         origin_price: 0,
         price: 0,
@@ -41,7 +41,7 @@ const app = new Vue({
         category: "",
         content: "",
         description: "",
-        imageUrl: "",
+        imageUrl: [],
         enabled: true,
         origin_price: 0,
         price: 0,
@@ -57,7 +57,7 @@ const app = new Vue({
       // 編輯中商品之id（資料庫更新）
       editingId: '',
       // 商品列表頁碼
-      page: 1,
+      page: 2,
       // 因新增和編輯共用Modal，故多一個變數，確認觸發之modal是「新增商品」或「編輯商品」
       // 之後或許調整為將modal元件獨立
       creating: true,
@@ -78,21 +78,33 @@ const app = new Vue({
         });
     },
     createProduct() {
-      this.products.push(_.cloneDeep(this.editingProduct));
-      this.editingProduct = _.cloneDeep(this.productTemplate);
-      $('#productModal').modal('hide');
+      // 新增商品至資料庫
+      const url = `${this.baseUrl}${this.uuid}/admin/ec/product`;
+      // Ajax
+      axios.post(url, this.editingProduct)
+      .then( res => {
+        // 將editingProduct清空
+        this.editingProduct = _.cloneDeep(this.productTemplate);
+        // 自動跳轉到page 1
+        this.page = 1;
+        this.getAllProducts();
+        // 自動關閉modal
+        $('#productModal').modal('hide');
+      })
+      .catch( err => {
+        console.log(err.response);
+      });
     },
     updateProduct() {
       // 為了使vue畫面自動更新，故使用forEach針對物件內每個key去更新資料
       Object.keys(this.products[this.editingIndex]).forEach(key => {
         this.products[this.editingIndex][key] = _.cloneDeep(this.editingProduct[key]);
       });
-      // 更新資料庫檔案
+      // 更新資料庫商品資訊
       const url = `${this.baseUrl}${this.uuid}/admin/ec/product/${this.editingId}`;
       const data = this.products.find( product => { // 使用editingId查找欲更新的商品
         return product.id === this.editingId;
       });
-      // 更新資料庫之商品資料
       axios.patch(url, data).then()
       .catch( err => {
         console.log(err.response);
@@ -140,5 +152,10 @@ const app = new Vue({
     } else { // 沒有的話，跳轉回Login頁面
       window.location = './index.html';
     }
+  },
+  computed: {
+    filterImageUrl() { // 清理陣列內的空值
+      return this.editingProduct.imageUrl.filter( url => url );
+    },
   }
 });

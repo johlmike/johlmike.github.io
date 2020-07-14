@@ -28,18 +28,14 @@ const app = new Vue({
           this.isLoading = false; // 讀取結束
           const token = res.data.token; // Token
           const expire = new Date(res.data.expired * 1000); // 過期日
-          // 存入cookie
-          document.cookie = `moerabbitworld-token=${token}; expires=${expire};`;
+          document.cookie = `moerabbitworld-token=${token}; expires=${expire};`; // 存入cookie
           window.location = './products.html';
         })
         .catch(err => {
           this.isLoading = false; // 讀取結束
-          // 取得error回傳的data
-          const data = err.response.data;
-          // 取得帳號的錯誤訊息
-          const idMsg = data.errors.email ? data.errors.email[0] : '';
-          // 取得密碼的錯誤訊息
-          const pwMsg = data.errors.password ? data.errors.password[0] : '';
+          const data = err.response.data; // 取得error回傳的data
+          const idMsg = data.errors.email ? data.errors.email[0] : ''; // 取得帳號的錯誤訊息
+          const pwMsg = data.errors.password ? data.errors.password[0] : ''; // 取得密碼的錯誤訊息
           alert(`${idMsg}\n${pwMsg}`);
         });
     }

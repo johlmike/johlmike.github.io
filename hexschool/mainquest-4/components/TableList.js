@@ -18,7 +18,6 @@ export default {
         </thead>
         <tbody>
           <tr v-for="(product,index) in products" :key="'product_' + index">
-            <!-- 一頁商品數量目前固定為25個，故顯示之編號也要調整 -->
             <td scope="row" class="align-middle">{{25 * (page - 1) + index + 1}}</td>
             <td class="align-middle">{{product.category}}</td>
             <td class="align-middle">{{product.title}}</td>

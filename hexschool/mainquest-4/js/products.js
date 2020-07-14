@@ -181,6 +181,8 @@ const app = new Vue({
       this.updateProduct(null, index);
     },
     changePage(page) {
+      this.loading = true; // 換頁讀取中
+      this.products = [];
       this.page = page;
       this.getAllProducts();
     }

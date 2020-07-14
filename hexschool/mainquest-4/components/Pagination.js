@@ -33,12 +33,12 @@ export default {
     },
     previousPage() {
       if( this.currentPage != 1 ){
-        this.$emit('change-page', currentPage - 1);
+        this.$emit('change-page', this.currentPage - 1);
       }
     },
     nextPage() {
-      if( this.currentPage !== totalPage ){
-        this.$emit('change-page', currentPage + 1);
+      if (this.currentPage !== this.totalPage) {
+        this.$emit('change-page', this.currentPage + 1);
       }
     }
   }

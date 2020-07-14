@@ -1,11 +1,3 @@
-// import Vue from 'vue';
-// import Vuesax from 'vuesax';
-
-// import 'vuesax/dist/vuesax.css' //Vuesax styles
-// Vue.use(Vuesax, {
-//   // options here
-// });
-
 import LoadingPage from '../components/LoadingPage.js';
 
 const app = new Vue({
@@ -15,15 +7,10 @@ const app = new Vue({
   },
   data() {
     return {
-      // api網址
       baseUrl: 'https://course-ec-api.hexschool.io/api/',
-      // 我的uuid
       uuid: '0ace4b59-2bf0-443c-968c-4c9a458d1cb9',
-      // 驗證用token
       token: '',
-      // 商品列表
       products: [],
-      // 空product物件
       productTemplate: {
         title: "",
         category: "",
@@ -34,13 +21,11 @@ const app = new Vue({
         origin_price: 0,
         price: 0,
         unit: "",
-        stock: 0,
-        option: {
-          comments: [],
-          hot: true
+        options: {
+          hot: true,
+          stock: 0,
         }
       },
-      // 編輯中的商品
       editingProduct: {
         title: "",
         category: "",
@@ -51,17 +36,13 @@ const app = new Vue({
         origin_price: 0,
         price: 0,
         unit: "",
-        stock: 0,
-        option: {
-          comments: [],
-          hot: true
+        options: {
+          hot: true,
+          stock: 0,
         }
       },
-      // 編輯中商品之列表編號（畫面更新）
       editingIndex: 0,
-      // 編輯中商品之id（資料庫更新）
       editingId: '',
-      // 商品列表頁碼
       page: 1,
       // 因新增和編輯共用Modal，故多一個變數，確認觸發之modal是「新增商品」或「編輯商品」
       // 之後或許調整為將modal元件獨立
@@ -71,87 +52,80 @@ const app = new Vue({
   },
   methods: {
     getAllProducts() {
-      // 讀取中
-      this.isLoading = true;
-      // 取得所有商品api的url
+      this.isLoading = true; // 讀取中
       const url = `${this.baseUrl}${this.uuid}/admin/ec/products?page=${this.page}`;
-      // 使用get取得所有商品列表
+      // Ajax
       axios.get(url)
         .then(res => {
-          // 讀取結束
-          this.isLoading = false;
-          // 將商品列表放入元件的data
-          this.products = res.data.data;
+          const vm = this;
+          this.isLoading = false; // 讀取結束
+          this.products = res.data.data; // 將商品列表放入元件的data
+          // 將options之String轉換為Object
+          console.log(this.products);
+          this.products.forEach((product, index) => {
+            if (product.options) { // 如果該商品有options的話
+              vm.products[index].options = JSON.parse(product.options);
+            }
+          });
         })
         .catch(err => {
           console.log(err.response);
         });
     },
     createProduct() {
-      // 讀取中
-      this.isLoading = true;
-      // 新增商品至資料庫
+      this.isLoading = true; // 讀取中
       const url = `${this.baseUrl}${this.uuid}/admin/ec/product`;
+      // 將options轉換成字串(為符合後端要求)
+      this.editingProduct.options = JSON.stringify(this.editingProduct.options);
       // Ajax
       axios.post(url, this.editingProduct)
         .then(res => {
-          // 讀取結束
-          this.isLoading = false;
-          // 將editingProduct清空
-          this.editingProduct = _.cloneDeep(this.productTemplate);
-          // 自動跳轉到page 1
-          this.page = 1;
-          this.getAllProducts();
-          // 自動關閉modal
-          $('#productModal').modal('hide');
+          this.isLoading = false; // 讀取結束
+          this.editingProduct = _.cloneDeep(this.productTemplate); // 將editingProduct清空
+          this.page = 1; // 自動跳轉到page 1
+          this.getAllProducts(); // 重新讀取商品列表
+          $('#productModal').modal('hide'); // 自動關閉modal
         })
         .catch(err => {
           console.log(err.response);
         });
     },
     updateProduct(evt, index) {
-      // 讀取中
-      this.isLoading = true;
+      this.isLoading = true; // 讀取中
       // 如果有傳入index，表示使用者直接從列表更新商品狀態(上架、熱門)
       if (index || index === 0) {
-        // 儲存編輯中商品之列表編號
-        this.editingIndex = index;
-        // 儲存編輯中商品之id
-        this.editingId = this.products[index].id;
-        // 將要編輯的商品內容放入editProduct
-        this.editingProduct = _.cloneDeep(this.products[index]);
+        this.editingIndex = index; // 儲存使用者欲編輯商品之表格編號
+        this.editingId = this.products[index].id; // 儲存使用者欲編輯商品之id
+        this.editingProduct = _.cloneDeep(this.products[index]); // 將要編輯的商品內容放入editProduct
       }
       // 為了使vue畫面自動更新，故使用forEach針對物件內每個key去更新資料
       Object.keys(this.products[this.editingIndex]).forEach(key => {
         this.products[this.editingIndex][key] = _.cloneDeep(this.editingProduct[key]);
       });
-      // 更新資料庫商品資訊
+      // 準備Ajax使用之url和data
       const url = `${this.baseUrl}${this.uuid}/admin/ec/product/${this.editingId}`;
-      const data = this.products.find(product => { // 使用editingId查找欲更新的商品
+      const data = _.cloneDeep(this.products.find(product => { // 使用editingId查找欲更新的商品並clone一份
         return product.id === this.editingId;
-      });
+      }));
+      // 將options轉換成字串(為符合後端要求)
+      data.options = JSON.stringify(data.options);
       // Ajax
       axios.patch(url, data).then(res => {
-          // 讀取結束
-          this.isLoading = false;
-          // 自動關閉modal
-          $('#productModal').modal('hide');
+          this.isLoading = false; // 讀取結束
+          $('#productModal').modal('hide'); // 自動關閉modal
         })
         .catch(err => {
           console.log(err.response);
         });
     },
     deleteProduct(index) {
-      // 讀取中
-      this.isLoading = true;
+      this.isLoading = true; // 讀取中
       const id = this.products[index].id;
       const url = `${this.baseUrl}${this.uuid}/admin/ec/product/${id}`;
       axios.delete(url)
         .then(() => {
-          // 讀取結束
-          this.isLoading = false;
-          // 刷新頁面
-          this.getAllProducts();
+          this.isLoading = false; // 讀取結束
+          this.getAllProducts(); // 刷新頁面
         })
         .catch(err => {
           console.log(err.response);
@@ -159,25 +133,19 @@ const app = new Vue({
     },
     toggleModal(index) {
       if (index === "new") {
-        // 設定modal為新增狀態
-        this.isCreating = true;
-        // 給予一個空的資料物件
-        this.editingProduct = _.cloneDeep(this.productTemplate);
+        this.isCreating = true; // 設定modal為新增狀態
+        this.editingProduct = _.cloneDeep(this.productTemplate); // 給予一個空的資料物件
       } else {
-        // 設定modal為編輯狀態
-        this.isCreating = false;
-        // 儲存編輯中商品之表格編號
-        this.editingIndex = index;
-        // 儲存編輯中商品之id
-        this.editingId = this.products[index].id;
-        // 將要編輯的商品內容放入editProduct
-        this.editingProduct = _.cloneDeep(this.products[index]);
+        this.isCreating = false; // 設定modal為編輯狀態
+        this.editingIndex = index; // 儲存編輯中商品之表格編號
+        this.editingId = this.products[index].id; // 儲存編輯中商品之id
+        this.editingProduct = _.cloneDeep(this.products[index]); // 將要編輯的商品內容放入editProduct
       }
       $('#productModal').modal('show');
     },
     toggleHot(index, hot) {
       // 更新本地端商品資料
-      this.products[index].option.hot = hot;
+      this.products[index].options.hot = hot;
       // 更新資料庫商品資料
       // ...
     },

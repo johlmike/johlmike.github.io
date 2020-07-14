@@ -22,6 +22,7 @@ const app = new Vue({
           const expire = new Date(res.data.expired * 1000); // 過期日
           // 存入cookie
           document.cookie = `moerabbitworld-token=${token}; expires=${expire};`;
+          window.location = './products.html';
         })
         .catch(err => {
           // 取得error回傳的data
@@ -34,11 +35,11 @@ const app = new Vue({
         });
     }
   },
-  created () {
+  created() {
     // 元件建立時，檢查是否已有Token
     const token = document.cookie.replace(/(?:(?:^|.*;\s*)moerabbitworld-token\s*\=\s*([^;]*).*$)|^.*$/, "$1");
     // 有Token的話，自動跳轉頁面
-    if( token ){
+    if (token) {
       window.location = './products.html';
     }
   }

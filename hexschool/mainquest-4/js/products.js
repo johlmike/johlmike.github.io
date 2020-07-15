@@ -70,10 +70,8 @@ const app = new Vue({
             if (product.options) { // 如果該商品有options的話
               this.products[index].options = JSON.parse(product.options);
             }
-            this.getProduct(product.id, data => { // description需要使用單一商品讀取
-              this.products[index].description = data.description;
-            });
           });
+          this.getAllpProductsDesc(); // description需要使用單一商品讀取
         })
         .catch(err => {
           this.isLoading = false; // 讀取結束
@@ -85,12 +83,25 @@ const app = new Vue({
           console.log(err.response);
         });
     },
-    getProduct(id, cb) {
+    getAllpProductsDesc() {
       this.isLoading = true; // 讀取中
+      this.products.forEach((product, index) => {
+        if (index !== this.products.length - 1) {
+          this.getProduct(product.id, data => {
+            this.products[index].description = data.description;
+          });
+        } else {
+          this.getProduct(product.id, data => {
+            this.products[index].description = data.description;
+            this.isLoading = false;
+          });
+        }
+      });
+    },
+    getProduct(id, cb) {
       const url = `${this.baseUrl}${this.uuid}/admin/ec/product/${id}`;
       axios.get(url)
         .then(res => {
-          this.isLoading = false; // 讀取結束
           cb(res.data.data);
         })
         .catch(err => {

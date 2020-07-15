@@ -139,7 +139,7 @@ export default {
   },
   computed: {
     filterImageUrl() { // 清理陣列內的空值
-      return this.product.imageUrl.filter(url => url);
+      return this.editingProduct.imageUrl.filter(url => url);
     },
   },
 }

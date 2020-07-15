@@ -1,6 +1,7 @@
 import LoadingPage from '../components/LoadingPage.js';
 import TableList from '../components/TableList.js';
 import Pagination from '../components/Pagination.js';
+import EditingModal from '../components/EditingModal.js';
 
 const app = new Vue({
   el: '#app',
@@ -8,6 +9,7 @@ const app = new Vue({
     LoadingPage,
     TableList,
     Pagination,
+    EditingModal,
   },
   data() {
     return {
@@ -49,8 +51,6 @@ const app = new Vue({
       editingId: '',
       totalPage: 1,
       page: 1,
-      // 因新增和編輯共用Modal，故多一個變數，確認觸發之modal是「新增商品」或「編輯商品」
-      // 之後或許調整為將modal元件獨立
       isCreating: true,
       isLoading: false,
     };
@@ -185,7 +185,17 @@ const app = new Vue({
       this.products = [];
       this.page = page;
       this.getAllProducts();
-    }
+    },
+    saveProduct(mode, editedProduct) {
+      // 取回使用者編輯完畢之商品資訊
+      this.editingProduct = _.cloneDeep(editedProduct);
+      // 如回傳 new 表示為建立商品、回傳 edit 表示為更新商品
+      if( mode === 'new' ){
+        this.createProduct();
+      } else if(mode === 'edit'){
+        this.updateProduct();
+      }
+    },
   },
   created() {
     // 元件建立時，嘗試取得Token
@@ -201,9 +211,4 @@ const app = new Vue({
       window.location = './index.html';
     }
   },
-  computed: {
-    filterImageUrl() { // 清理陣列內的空值
-      return this.editingProduct.imageUrl.filter(url => url);
-    },
-  }
 });

@@ -35,7 +35,7 @@
       </table-list>
       
     </div>
-    <editing-modal :product="editingProduct" :is-creating="isCreating" @save="saveProduct"></editing-modal>
+    <editing-modal ref="editingModal" :product="editingProduct" :is-creating="isCreating" @save="saveProduct"></editing-modal>
   </div>
   <!-- Optionsal JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->

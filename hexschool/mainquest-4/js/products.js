@@ -112,7 +112,7 @@ const app = new Vue({
           this.editingProduct = _.cloneDeep(this.productTemplate); // 將editingProduct清空
           this.page = 1; // 自動跳轉到page 1
           this.getAllProducts(); // 重新讀取商品列表
-          $('#productModal').modal('hide'); // 自動關閉modal
+          this.$refs.editingModal.closeEditingModal();
         })
         .catch(err => {
           this.isLoading = false; // 讀取結束
@@ -141,7 +141,7 @@ const app = new Vue({
       // Ajax
       axios.patch(url, data).then(res => {
           this.isLoading = false; // 讀取結束
-          $('#productModal').modal('hide'); // 自動關閉modal
+          this.$refs.editingModal.closeEditingModal();
         })
         .catch(err => {
           this.isLoading = false; // 讀取結束
@@ -172,7 +172,7 @@ const app = new Vue({
         this.editingId = this.products[index].id; // 儲存編輯中商品之id
         this.editingProduct = _.cloneDeep(this.products[index]); // 將要編輯的商品內容放入editProduct
       }
-      $('#productModal').modal('show');
+      this.$refs.editingModal.openEditingModal();
     },
     toggleHot(index, hot) {
       // 更新本地端商品資料
@@ -190,9 +190,9 @@ const app = new Vue({
       // 取回使用者編輯完畢之商品資訊
       this.editingProduct = _.cloneDeep(editedProduct);
       // 如回傳 new 表示為建立商品、回傳 edit 表示為更新商品
-      if( mode === 'new' ){
+      if (mode === 'new') {
         this.createProduct();
-      } else if(mode === 'edit'){
+      } else if (mode === 'edit') {
         this.updateProduct();
       }
     },

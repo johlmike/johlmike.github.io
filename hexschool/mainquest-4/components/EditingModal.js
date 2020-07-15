@@ -118,7 +118,7 @@ export default {
   },
   methods: {
     save(mode) {
-      if( this.checkForm() ){
+      if (this.checkForm()) {
         this.$emit('save', mode, this.editingProduct);
       } else {
         alert(this.errorMsg);
@@ -128,7 +128,7 @@ export default {
       let ready = true;
       let errorMsg = "";
       // 商品圖片 至少上傳一張
-      if( !this.editingProduct.imageUrl[0] ){
+      if (!this.editingProduct.imageUrl[0]) {
         ready = false;
         errorMsg += "商品圖片至少需上傳一張\n";
       }
@@ -154,6 +154,12 @@ export default {
       }
       this.errorMsg = errorMsg;
       return ready;
+    },
+    openEditingModal() {
+      $('#productModal').modal('show');
+    },
+    closeEditingModal() {
+      $('#productModal').modal('hide');
     }
   },
   created() {

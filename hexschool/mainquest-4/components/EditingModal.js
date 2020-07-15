@@ -113,20 +113,47 @@ export default {
   data() {
     return {
       editingProduct: {},
+      errorMsg: "",
     };
   },
   methods: {
     save(mode) {
-      this.$emit('save', mode, this.editingProduct);
+      if( this.checkForm() ){
+        this.$emit('save', mode, this.editingProduct);
+      } else {
+        alert(this.errorMsg);
+      }
     },
     checkForm() {
       let ready = true;
-      // 圖片至少上傳一張
-      // if( this. )
+      let errorMsg = "";
+      // 商品圖片 至少上傳一張
+      if( !this.editingProduct.imageUrl[0] ){
+        ready = false;
+        errorMsg += "商品圖片至少需上傳一張\n";
+      }
       // 商品名稱 為必填項目
+      if (!this.editingProduct.title) {
+        ready = false;
+        errorMsg += "商品名稱 為必填項目\n";
+      }
       // 商品分類 為必填項目
+      if (!this.editingProduct.category) {
+        ready = false;
+        errorMsg += "商品分類 為必填項目\n";
+      }
       // 商品敘述 為必填項目
+      if (!this.editingProduct.content) {
+        ready = false;
+        errorMsg += "商品敘述 為必填項目\n";
+      }
       // 商品說明 為必填項目
+      if (!this.editingProduct.description) {
+        ready = false;
+        errorMsg += "商品說明 為必填項目";
+      }
+      this.errorMsg = errorMsg;
+      return ready;
     }
   },
   created() {

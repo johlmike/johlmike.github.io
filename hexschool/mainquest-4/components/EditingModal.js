@@ -156,7 +156,11 @@ export default {
       return ready;
     },
     openEditingModal() {
-      $('#productModal').modal('show');
+      $('#productModal').modal({
+        backdrop: 'static',
+        keyboard: false,
+        show: true,
+      });
     },
     closeEditingModal() {
       $('#productModal').modal('hide');

@@ -34,8 +34,8 @@ export default {
             </td>
             <td class="align-middle">
               <div class="btn-group" role="group">
-                <button type="button" class="btn btn-outline-primary" @click="toggleModal(index)">編輯</button>
-                <button type="button" class="btn btn-outline-danger" @click="deleteProduct(index)">刪除</button>
+                <button type="button" class="btn btn-outline-primary" @click="toggleModal(index)"><i class="fas fa-edit"></i> 編輯</button>
+                <button type="button" class="btn btn-outline-danger" @click="deleteProduct(index)"><i class="far fa-trash-alt"></i> 刪除</button>
               </div>
             </td>
           </tr>

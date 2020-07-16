@@ -2,6 +2,7 @@ import LoadingPage from '../components/LoadingPage.js';
 import TableList from '../components/TableList.js';
 import Pagination from '../components/Pagination.js';
 import EditingModal from '../components/EditingModal.js';
+import AlertModal from '../components/AlertModal.js';
 
 const app = new Vue({
   el: '#app',
@@ -10,6 +11,7 @@ const app = new Vue({
     TableList,
     Pagination,
     EditingModal,
+    AlertModal,
   },
   data() {
     return {
@@ -207,6 +209,9 @@ const app = new Vue({
         this.updateProduct();
       }
     },
+    handleFormAlert(msg) {
+      this.$refs.alertModal.openAlertModal(msg);
+    }
   },
   created() {
     // 元件建立時，嘗試取得Token

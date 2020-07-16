@@ -33,9 +33,11 @@
       <table-list :products="products" :page="page" @update-product="updateProduct" @toggle-hot="toggleHot"
         @toggle-modal="toggleModal" @delete-product="deleteProduct">
       </table-list>
-      
+
     </div>
-    <editing-modal ref="editingModal" :product="editingProduct" :is-creating="isCreating" @save="saveProduct"></editing-modal>
+    <editing-modal ref="editingModal" :product="editingProduct" :is-creating="isCreating" @save="saveProduct"
+      @alert="handleFormAlert"></editing-modal>
+    <alert-modal ref="alertModal"></alert-modal>
   </div>
   <!-- Optionsal JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->

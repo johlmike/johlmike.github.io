@@ -1,19 +1,21 @@
 <template>
   <div class="home">
-    
+    <Carousel :isTop="isTop"></Carousel>
+    <div>123</div>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue';
-import NavBar from '../components/NavBar.vue';
+import Carousel from '@/components/Carousel.vue';
 
 export default {
   name: 'Home',
+  props: {
+    isTop: Boolean,
+  },
   components: {
-    HelloWorld,
-    NavBar,
+    Carousel,
   },
 };
 </script>

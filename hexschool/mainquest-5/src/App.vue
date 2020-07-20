@@ -1,16 +1,42 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+    <NavBar :isTop="isTop"></NavBar>
+    <router-view :isTop="isTop" />
   </div>
 </template>
 
+<script>
+import NavBar from '@/components/NavBar.vue';
+
+export default {
+  components: {
+    NavBar,
+  },
+  data() {
+    return {
+      isTop: true,
+    };
+  },
+  methods: {
+    updateScroll() {
+      if (window.scrollY) {
+        // 已滑動
+        this.isTop = false;
+      } else {
+        this.isTop = true; // 最上方
+      }
+    },
+  },
+  mounted() {
+    // 監聽 scroll 事件，調整滑動提示和導覽列的顯示
+    window.addEventListener('scroll', this.updateScroll);
+  },
+};
+</script>
+
 <style lang="scss">
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: '微軟正黑體', Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;

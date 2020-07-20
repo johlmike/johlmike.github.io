@@ -1,5 +1,5 @@
 <template>
-  <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+  <div class="carousel slide mb-5" data-ride="carousel">
     <div class="carousel-inner vh-100 h-100">
       <div class="carousel-item active">
         <img src="../assets/carousel-1.jpg" class="d-block w-100" alt="#" />

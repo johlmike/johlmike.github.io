@@ -27,7 +27,7 @@
                 </a>
               </li>
             </router-link>
-            <router-link to="about">
+            <router-link to="/">
               <li class="nav-item">
                 <a class="nav-link" href="#">最新消息</a>
               </li>

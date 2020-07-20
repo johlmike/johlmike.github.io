@@ -5,6 +5,7 @@ import 'jquery';
 import 'popper.js';
 import 'bootstrap'; // Import js file
 import 'bootstrap/dist/css/bootstrap.min.css'; // Import css file
+import 'axios';
 
 Vue.config.productionTip = false;
 

@@ -2,9 +2,6 @@
   <div>
     <div class="header container-fluid" :class="{'header-pink': !isTop}">
       <nav class="navbar navbar-expand-lg">
-        <router-link to="/">
-          <a class="navbar-brand" href="#">萌兔窩</a>
-        </router-link>|
         <button
           class="navbar-toggler"
           type="button"
@@ -16,42 +13,37 @@
         >
           <span class="navbar-toggler-icon"></span>
         </button>
+        <div class="container d-flex justify-content-between">
+          <div class="d-flex flex-row">
+            <router-link to="/">
+              <font-awesome-icon :icon="['fas', 'home']" class="nav-icon" />
+              <a class="nav-link" href="#">
+                首頁
+                <span class="sr-only">(current)</span>
+              </a>
+            </router-link>
+            <router-link to="/">
+              <font-awesome-icon :icon="['fas', 'newspaper']" class="nav-icon" />
+              <a class="nav-link" href="#">最新消息</a>
+            </router-link>
+          </div>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mr-auto">
+          <div>
             <router-link to="/">
-              <li class="nav-item active">
-                <a class="nav-link" href="#">
-                  首頁
-                  <span class="sr-only">(current)</span>
-                </a>
-              </li>
+              <a class="nav-link nav-logo" href="#">萌兔窩</a>
+            </router-link>
+          </div>
+
+          <div class="d-flex flex-row">
+            <router-link to="/">
+              <font-awesome-icon :icon="['fas', 'shopping-cart']" class="nav-icon" />
+              <a class="nav-link" href="#">所有產品</a>
             </router-link>
             <router-link to="/">
-              <li class="nav-item">
-                <a class="nav-link" href="#">最新消息</a>
-              </li>
+              <font-awesome-icon :icon="['fas', 'user']" class="nav-icon" />
+              <a class="nav-link" href="#">登入</a>
             </router-link>
-            <router-link to="/">
-              <li class="nav-item">
-                <a class="nav-link" href="#">所有產品</a>
-              </li>
-            </router-link>
-            <router-link to="/">
-              <li class="nav-item">
-                <a class="nav-link" href="#">萌兔小學堂</a>
-              </li>
-            </router-link>
-          </ul>
-          <!-- <form class="form-inline my-2 my-lg-0">
-            <input
-              class="form-control mr-sm-2"
-              type="search"
-              placeholder="Search"
-              aria-label="Search"
-            />
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">搜尋</button>
-          </form>-->
+          </div>
         </div>
       </nav>
     </div>
@@ -75,18 +67,25 @@ export default {
   color: white;
 }
 
-.navbar-brand {
-  color: white;
-  font-weight: bold;
+.header-pink {
+  background-color: pink;
 }
 
 .nav-link {
   color: white;
   font-weight: bold;
+  font-size: 1.3rem;
 }
 
-.header-pink {
-  background-color: pink;
+.nav-logo {
+  font-weight: bold;
+  font-size: 2rem;
+}
+
+.nav-icon {
+  color: white;
+  font-size: 1.3rem;
+  margin-bottom: -5px;
 }
 </style>
 

@@ -9,6 +9,9 @@
             @changeCategory="handleCategoryChange"
           ></ProductCategory>
         </div>
+        <div class="col-md-9">
+          <ProductsTable></ProductsTable>
+        </div>
       </div>
     </div>
   </div>
@@ -18,6 +21,7 @@
 // @ is an alias to /src
 import Carousel from '@/components/Carousel.vue';
 import ProductCategory from '@/components/ProductsCategory.vue';
+import ProductsTable from '@/components/ProductsTable.vue';
 
 export default {
   name: 'Home',
@@ -27,6 +31,7 @@ export default {
   components: {
     Carousel,
     ProductCategory,
+    ProductsTable,
   },
   data() {
     return {
@@ -48,3 +53,6 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+</style>

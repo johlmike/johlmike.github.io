@@ -39,8 +39,8 @@ $colorBg: #222a30;
 $colorOutline: #ffffff;
 $colorOutlineFade: #4e5559;
 
-$widthMouse: 40px;
-$heightMouse: 75px;
+$widthMouse: 30px;
+$heightMouse: 55px;
 $borderMouse: 6px;
 
 $posMouse: 8px;

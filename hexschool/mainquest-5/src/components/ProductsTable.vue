@@ -30,7 +30,9 @@ export default {
 <style scoped>
 .card {
   width: 32%;
+  padding-top: 2%;
   margin-bottom: 2%;
+  border: 1.5px solid rgba(0,0,0,.125);
 }
 .card-top {
   height: 200px;

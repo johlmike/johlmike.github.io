@@ -7,10 +7,10 @@
           <ProductCategory
             v-bind:categoryList="categoryList"
             @changeCategory="handleCategoryChange"
-          ></ProductCategory>
+          />
         </div>
         <div class="col-md-9">
-          <ProductsTable :products="products"></ProductsTable>
+          <ProductsTable :products="products" />
         </div>
       </div>
     </div>

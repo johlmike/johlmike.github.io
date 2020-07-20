@@ -10,7 +10,7 @@
           ></ProductCategory>
         </div>
         <div class="col-md-9">
-          <ProductsTable></ProductsTable>
+          <ProductsTable :products="products"></ProductsTable>
         </div>
       </div>
     </div>
@@ -35,6 +35,8 @@ export default {
   },
   data() {
     return {
+      baseUrl: process.env.VUE_APP_BASEURL,
+      uuid: process.env.VUE_APP_UUID,
       categoryList: [
         '所有商品',
         '主食飼料',
@@ -43,13 +45,30 @@ export default {
         '居家籠便盆',
         '木屑/砂',
       ],
+      products: [],
       activeCategory: '所有商品',
+      totalPages: 1,
     };
   },
   methods: {
+    getProducts(page = 1) {
+      const url = `${this.baseUrl}${this.uuid}/ec/products?page=${page}`;
+      this.axios.get(url).then((res) => {
+        const currentPage = res.data.meta.pagination.current_page;
+        this.totalPages = res.data.meta.pagination.total_pages;
+        this.products = this.products.concat(res.data.data);
+        // 如果商品列表超過一頁且尚未讀取完畢，再執行一次 getProducts
+        if (currentPage !== this.totalPages) {
+          this.getProducts(page + 1);
+        }
+      });
+    },
     handleCategoryChange(activeCategory) {
       this.activeCategory = activeCategory;
     },
+  },
+  created() {
+    this.getProducts();
   },
 };
 </script>

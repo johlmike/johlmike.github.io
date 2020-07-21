@@ -22,8 +22,18 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import Loading from 'vue-loading-overlay';
 import 'vue-loading-overlay/dist/vue-loading.css';
-import { ValidationProvider, extend, configure } from 'vee-validate';
-import { required, min_value as minValue } from 'vee-validate/dist/rules';
+import {
+  ValidationProvider,
+  ValidationObserver,
+  extend,
+  configure,
+} from 'vee-validate';
+import {
+  required,
+  min_value as minValue,
+  email,
+  min,
+} from 'vee-validate/dist/rules';
 import VueLodash from 'vue-lodash';
 import lodash from 'lodash';
 import App from './App.vue';
@@ -36,9 +46,18 @@ Vue.use(VueAxios, axios);
 Vue.use(Loading);
 // VeeValidate 設定
 Vue.component('ValidationProvider', ValidationProvider);
+Vue.component('ValidationObserver', ValidationObserver);
+extend('email', {
+  ...email,
+  message: '請輸入正確的 Email 格式',
+});
 extend('required', {
   ...required,
-  message: '數量為必填',
+  message: '{_field_} 為必填項目',
+});
+extend('min', {
+  ...min,
+  message: '請輸入至少 {length} 碼',
 });
 extend('min_value', {
   ...minValue,
@@ -67,6 +86,8 @@ library.add(
   faTrashAlt,
 );
 Vue.component('font-awesome-icon', FontAwesomeIcon);
+
+Vue.prototype.$bus = new Vue();
 
 new Vue({
   router,

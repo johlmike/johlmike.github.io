@@ -1,11 +1,10 @@
 <template>
-  <div class="cart-table container-fluid pb-5 vh-100">
+  <div class="cart-table container-fluid pb-5">
     <div class="cart-table-head row">
       <div class="col-5">商品名稱</div>
       <div class="col-2">數量</div>
       <div class="col-2">單價</div>
       <div class="col-2">小計</div>
-      <!-- <div class="col-1">刪除</div> -->
     </div>
     <div class="cart-table-body">
       <div v-for="(cartItem,index) in cart" :key="'cart_' + index" class="body-item row py-3">
@@ -105,6 +104,9 @@ export default {
   },
   created() {
     this.getCart();
+    // this.$bus.$on('clearCart', () => {
+    //   this.cart = [];
+    // });
   },
   computed: {
     sumPrice() {

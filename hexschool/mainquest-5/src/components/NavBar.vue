@@ -22,20 +22,21 @@
                 <span class="sr-only" v-if="isActive">(current)</span>
               </a>
             </router-link>
-            <router-link to="/about" v-slot="{ isActive, href }">
+            <!-- 暫時註解掉尚未完成的分頁 -->
+            <!-- <router-link to="/" v-slot="{ isActive, href }">
               <a :href="href" :class="{'is-active': isActive}" class="nav-link">
                 <font-awesome-icon :icon="['fas', 'newspaper']" class="nav-icon" />
                 <span>最新消息</span>
                 <span class="sr-only" v-if="isActive">(current)</span>
               </a>
             </router-link>
-            <router-link to="/about" v-slot="{ isActive, href }">
+            <router-link to="/" v-slot="{ isActive, href }">
               <a :href="href" :class="{'is-active': isActive}" class="nav-link">
                 <font-awesome-icon :icon="['fas', 'carrot']" class="nav-icon" />
                 <span>產品</span>
                 <span class="sr-only" v-if="isActive">(current)</span>
               </a>
-            </router-link>
+            </router-link> -->
           </div>
 
           <div class="nav-block">

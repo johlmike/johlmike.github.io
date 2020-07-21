@@ -3,6 +3,7 @@
     <NavBar :isTop="false"></NavBar>
     <div class="container">
       <CartTable></CartTable>
+      <CartForm></CartForm>
     </div>
   </div>
 </template>
@@ -10,11 +11,13 @@
 <script>
 import NavBar from '@/components/NavBar.vue';
 import CartTable from '@/components/CartTable.vue';
+import CartForm from '@/components/CartForm.vue';
 
 export default {
   components: {
     NavBar,
     CartTable,
+    CartForm,
   },
 };
 </script>

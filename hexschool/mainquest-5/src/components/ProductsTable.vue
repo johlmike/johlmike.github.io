@@ -32,10 +32,12 @@
             </button>
           </div>
           <div class="modal-body no_selection">
-            <img
-              :src=" addingProduct.imageUrl ? addingProduct.imageUrl[0] : '' "
-              :alt="addingProduct.title"
-            />
+            <div class="modal-img">
+              <img
+                :src=" addingProduct.imageUrl ? addingProduct.imageUrl[0] : '' "
+                :alt="addingProduct.title"
+              />
+            </div>
             <div class="d-flex justify-content-center align-items-start">
               <font-awesome-icon
                 :icon="['fas', 'minus-square']"
@@ -88,6 +90,7 @@ export default {
       uuid: process.env.VUE_APP_UUID,
       addingProduct: {},
       addingQuantity: 0,
+      cart: [],
     };
   },
   methods: {
@@ -98,24 +101,50 @@ export default {
     },
     addCart() {
       if (this.addingQuantity) {
-        const url = `${this.baseUrl}${this.uuid}/ec/shopping`;
-        const data = {
-          product: this.addingProduct.id,
-          quantity: this.addingQuantity,
-        };
-        const loader = this.$loading.show();
-        this.axios
-          .post(url, data)
-          .then((res) => {
-            loader.hide();
-            console.log('加入購物車成功', res);
-          })
-          .catch((err) => {
-            loader.hide();
-            console.log(err.response);
-          });
+        // 檢查是否已有在購物車
+        const addingId = this.addingProduct.id;
+        if (this.cart.find((cartItem) => cartItem.product.id === addingId)) {
+          // 檢查到重複，改用update
+          this.updateCart();
+        } else {
+          // 沒有重複，新增商品至購物車
+          const url = `${this.baseUrl}${this.uuid}/ec/shopping`;
+          const data = {
+            product: this.addingProduct.id,
+            quantity: this.addingQuantity,
+          };
+          const loader = this.$loading.show();
+          this.axios
+            .post(url, data)
+            .then((res) => {
+              loader.hide();
+              $('.addCartModal').modal('hide');
+              console.log('加入購物車成功', res);
+            })
+            .catch((err) => {
+              loader.hide();
+              console.log(err.response);
+            });
+        }
       }
     },
+    getCart() {
+      const url = `${this.baseUrl}${this.uuid}/ec/shopping`;
+      this.axios
+        .get(url)
+        .then((res) => {
+          this.cart = res.data.data;
+        })
+        .catch((err) => {
+          console.log(err.response);
+        });
+    },
+    updateCart() {
+      console.log('update');
+    },
+  },
+  created() {
+    this.getCart();
   },
 };
 </script>
@@ -187,6 +216,16 @@ export default {
   width: 4rem;
   margin-left: 1rem;
   margin-right: 1rem;
+}
+.modal-body {
+  .modal-img {
+    max-height: 400px;
+    overflow: hidden;
+    margin-bottom: 1rem;
+    img {
+      width: 100%;
+    }
+  }
 }
 // 隱藏 input type=number 的箭頭
 input::-webkit-outer-spin-button,

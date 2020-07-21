@@ -114,17 +114,17 @@ $DarkerPink: #9d8189;
       &:hover {
         background-color: $DarkerPink;
         text-decoration: none;
-        color: $Pink;
+        color: white;
         .nav-icon {
-          color: $Pink;
+          color: white;
         }
       }
     }
     .is-active {
       background-color: $DarkerPink;
-      color: $Pink;
+      color: white;
       .nav-icon {
-        color: $Pink;
+        color: white;
       }
     }
     .nav-logo {

@@ -14,6 +14,9 @@ import {
   faUser,
   faCarrot,
   faBook,
+  faPlusSquare,
+  faMinusSquare,
+  faChevronDown,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import App from './App.vue';
@@ -30,6 +33,9 @@ library.add(
   faUser,
   faCarrot,
   faBook,
+  faPlusSquare,
+  faMinusSquare,
+  faChevronDown,
 );
 Vue.component('font-awesome-icon', FontAwesomeIcon);
 

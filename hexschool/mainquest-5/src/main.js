@@ -19,11 +19,32 @@ import {
   faChevronDown,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import Loading from 'vue-loading-overlay';
+import 'vue-loading-overlay/dist/vue-loading.css';
+import { ValidationProvider, extend, configure } from 'vee-validate';
+import { required, min_value as minValue } from 'vee-validate/dist/rules';
 import App from './App.vue';
 import router from './router';
 
 Vue.config.productionTip = false;
 Vue.use(VueAxios, axios);
+Vue.use(Loading);
+// VeeValidate 設定
+Vue.component('ValidationProvider', ValidationProvider);
+extend('required', {
+  ...required,
+  message: '數量為必填',
+});
+extend('min_value', {
+  ...minValue,
+  message: '數量最少為{min}',
+});
+configure({
+  classes: {
+    valid: 'is-valid', // 驗證通過回傳 is-valid
+    invalid: 'is-invalid', // 驗證失敗回傳 is-invalid
+  },
+});
 
 library.add(
   faCartPlus,

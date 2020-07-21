@@ -31,18 +31,28 @@
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <div class="modal-body">
+          <div class="modal-body no_selection">
             <img
               :src=" addingProduct.imageUrl ? addingProduct.imageUrl[0] : '' "
               :alt="addingProduct.title"
             />
-            <div class="d-flex justify-content-center align-items-center">
+            <div class="d-flex justify-content-center align-items-start">
               <font-awesome-icon
                 :icon="['fas', 'minus-square']"
                 class="icon-quantity"
-                @click="addingQuantity--"
+                @click="()=>{if(addingQuantity > 1)addingQuantity--}"
               />
-              <input class="input-quantity" type="number" v-model.number="addingQuantity" />
+              <ValidationProvider rules="min_value:1|required" v-slot="{ errors, classes }">
+                <input
+                  class="input-quantity"
+                  :class="classes"
+                  name="數量"
+                  type="number"
+                  v-model.number="addingQuantity"
+                  min="1"
+                />
+                <span class="invalid-feedback">{{ errors[0] }}</span>
+              </ValidationProvider>
               <font-awesome-icon
                 :icon="['fas', 'plus-square']"
                 class="icon-quantity"
@@ -52,7 +62,12 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
-            <button type="button" class="btn btn-primary">加入購物車</button>
+            <button
+              type="button"
+              class="btn btn-primary"
+              @click="addCart"
+              :disabled="addingQuantity < 1"
+            >加入購物車</button>
           </div>
         </div>
       </div>
@@ -69,6 +84,8 @@ export default {
   },
   data() {
     return {
+      baseUrl: process.env.VUE_APP_BASEURL,
+      uuid: process.env.VUE_APP_UUID,
       addingProduct: {},
       addingQuantity: 0,
     };
@@ -76,11 +93,28 @@ export default {
   methods: {
     openAddCartModal(product) {
       this.addingProduct = product;
-      this.addingQuantity = 0;
+      this.addingQuantity = 1;
       $('.addCartModal').modal('show');
     },
-    addCart(product, quantity) {
-      this.$emit('add-cart', product, quantity);
+    addCart() {
+      if (this.addingQuantity) {
+        const url = `${this.baseUrl}${this.uuid}/ec/shopping`;
+        const data = {
+          product: this.addingProduct.id,
+          quantity: this.addingQuantity,
+        };
+        const loader = this.$loading.show();
+        this.axios
+          .post(url, data)
+          .then((res) => {
+            loader.hide();
+            console.log('加入購物車成功', res);
+          })
+          .catch((err) => {
+            loader.hide();
+            console.log(err.response);
+          });
+      }
     },
   },
 };
@@ -145,12 +179,12 @@ export default {
   bottom: -2px;
 }
 .icon-quantity {
-  font-size: 1.2rem;
+  font-size: 2rem;
   cursor: pointer;
 }
 .input-quantity {
   text-align: center;
-  width: 3rem;
+  width: 4rem;
   margin-left: 1rem;
   margin-right: 1rem;
 }
@@ -162,5 +196,13 @@ input::-webkit-inner-spin-button {
 }
 input[type='number'] {
   -moz-appearance: textfield;
+}
+// 禁用雙擊選取文字
+.no_selection {
+  user-select: none; /* standard syntax */
+  -webkit-user-select: none; /* webkit (safari, chrome) browsers */
+  -moz-user-select: none; /* mozilla browsers */
+  -khtml-user-select: none; /* webkit (konqueror) browsers */
+  -ms-user-select: none; /* IE10+ */
 }
 </style>

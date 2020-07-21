@@ -15,46 +15,46 @@
         </button>
         <div class="container d-flex justify-content-between">
           <div class="d-flex flex-row">
-            <router-link to="/" v-slot="{ isActive }">
-              <div class="pt-2" :class="{'is-active': isActive}">
+            <router-link to="/" v-slot="{ isActive, href }">
+              <a :href="href" class="pt-2" :class="{'is-active': isActive}">
                 <font-awesome-icon :icon="['fas', 'home']" class="nav-icon" />
-                <a class="nav-link" href="#">
+                <a class="nav-link">
                   首頁
                   <span class="sr-only" v-if="isActive">(current)</span>
                 </a>
-              </div>
+              </a>
             </router-link>
-            <router-link to="/about">
-              <div class="pt-2" :class="{'is-active': isActive}">
+            <router-link to="/about" v-slot="{ isActive, href }">
+              <a :href="href" class="pt-2" :class="{'is-active': isActive}">
                 <font-awesome-icon :icon="['fas', 'newspaper']" class="nav-icon" />
-                <a class="nav-link" href="#">
+                <a class="nav-link">
                   最新消息
                   <span class="sr-only" v-if="isActive">(current)</span>
                 </a>
-              </div>
+              </a>
             </router-link>
           </div>
 
           <div>
             <router-link to="/">
-              <a class="nav-link nav-logo" href="#">萌兔窩</a>
+              <a class="nav-link nav-logo">萌兔窩</a>
             </router-link>
           </div>
 
           <div class="d-flex flex-row">
-            <router-link to="/about">
-              <div class="pt-2" :class="{'is-active': isActive}">
+            <router-link to="/about" v-slot="{ isActive, href }">
+              <a :href="href" class="pt-2" :class="{'is-active': isActive}">
                 <font-awesome-icon :icon="['fas', 'shopping-cart']" class="nav-icon" />
-                <a class="nav-link" href="#">
+                <a class="nav-link">
                   所有產品
                   <span class="sr-only" v-if="isActive">(current)</span>
                 </a>
-              </div>
+              </a>
             </router-link>
-            <router-link to="/about">
+            <router-link to="/about" v-slot="{ isActive }">
               <div class="pt-2" :class="{'is-active': isActive}">
                 <font-awesome-icon :icon="['fas', 'user']" class="nav-icon" />
-                <a class="nav-link" href="#">登入</a>
+                <a class="nav-link">登入</a>
               </div>
             </router-link>
           </div>
@@ -70,9 +70,7 @@ export default {
     isTop: Boolean,
   },
   data() {
-    return {
-      isActive: false,
-    };
+    return {};
   },
 };
 </script>
@@ -101,6 +99,7 @@ $DarkerPink: #9d8189;
   .nav-logo {
     font-weight: bold;
     font-size: 2rem;
+    letter-spacing: 0.5rem;
   }
   .is-active {
     background-color: $DarkerPink;

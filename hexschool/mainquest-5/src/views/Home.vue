@@ -56,7 +56,7 @@ export default {
       this.axios.get(url).then((res) => {
         const currentPage = res.data.meta.pagination.current_page;
         this.totalPages = res.data.meta.pagination.total_pages;
-        this.products = this.products.concat(res.data.data);
+        this.products = [...this.products, ...res.data.data];
         // 如果商品列表超過一頁且尚未讀取完畢，再執行一次 getProducts
         if (currentPage !== this.totalPages) {
           this.getProducts(page + 1);

@@ -12,6 +12,8 @@ import {
   faNewspaper,
   faShoppingCart,
   faUser,
+  faCarrot,
+  faBook,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import App from './App.vue';
@@ -20,7 +22,15 @@ import router from './router';
 Vue.config.productionTip = false;
 Vue.use(VueAxios, axios);
 
-library.add(faCartPlus, faHome, faNewspaper, faShoppingCart, faUser);
+library.add(
+  faCartPlus,
+  faHome,
+  faNewspaper,
+  faShoppingCart,
+  faUser,
+  faCarrot,
+  faBook,
+);
 Vue.component('font-awesome-icon', FontAwesomeIcon);
 
 new Vue({

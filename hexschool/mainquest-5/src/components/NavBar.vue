@@ -13,49 +13,60 @@
         >
           <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="container d-flex justify-content-between">
-          <div class="d-flex flex-row">
+        <div class="container-fluid d-flex justify-content-round">
+          <div class="nav-block d-flex flex-row">
             <router-link to="/" v-slot="{ isActive, href }">
-              <a :href="href" class="pt-2" :class="{'is-active': isActive}">
+              <a :href="href" :class="{'is-active': isActive}" class="nav-link">
                 <font-awesome-icon :icon="['fas', 'home']" class="nav-icon" />
-                <a class="nav-link">
-                  首頁
-                  <span class="sr-only" v-if="isActive">(current)</span>
-                </a>
+                <span>首頁</span>
+                <span class="sr-only" v-if="isActive">(current)</span>
               </a>
             </router-link>
             <router-link to="/about" v-slot="{ isActive, href }">
-              <a :href="href" class="pt-2" :class="{'is-active': isActive}">
+              <a :href="href" :class="{'is-active': isActive}" class="nav-link">
                 <font-awesome-icon :icon="['fas', 'newspaper']" class="nav-icon" />
-                <a class="nav-link">
-                  最新消息
-                  <span class="sr-only" v-if="isActive">(current)</span>
-                </a>
+                <span>最新消息</span>
+                <span class="sr-only" v-if="isActive">(current)</span>
+              </a>
+            </router-link>
+            <router-link to="/about" v-slot="{ isActive, href }">
+              <a :href="href" :class="{'is-active': isActive}" class="nav-link">
+                <font-awesome-icon :icon="['fas', 'carrot']" class="nav-icon" />
+                <span>產品</span>
+                <span class="sr-only" v-if="isActive">(current)</span>
               </a>
             </router-link>
           </div>
 
-          <div>
+          <div class="nav-block">
             <router-link to="/">
               <a class="nav-link nav-logo">萌兔窩</a>
             </router-link>
           </div>
 
-          <div class="d-flex flex-row">
-            <router-link to="/about" v-slot="{ isActive, href }">
-              <a :href="href" class="pt-2" :class="{'is-active': isActive}">
-                <font-awesome-icon :icon="['fas', 'shopping-cart']" class="nav-icon" />
+          <div class="nav-block nav-block-right d-flex flex-row">
+            <!-- <router-link to="/about" v-slot="{ isActive, href }">
+              <a :href="href" :class="{'is-active': isActive}">
                 <a class="nav-link">
-                  所有產品
+                  <font-awesome-icon :icon="['fas', 'book']" class="nav-icon" />
+                  <span>兔知識</span>
                   <span class="sr-only" v-if="isActive">(current)</span>
                 </a>
               </a>
+            </router-link>-->
+            <router-link to="/about" v-slot="{ isActive, href }">
+              <a :href="href" :class="{'is-active': isActive}" class="nav-link">
+                <font-awesome-icon :icon="['fas', 'shopping-cart']" class="nav-icon" />
+                <span>購物車</span>
+                <span class="sr-only" v-if="isActive">(current)</span>
+              </a>
             </router-link>
-            <router-link to="/about" v-slot="{ isActive }">
-              <div class="pt-2" :class="{'is-active': isActive}">
+            <router-link to="/about" v-slot="{ isActive, href }">
+              <a :href="href" :class="{'is-active': isActive}" class="nav-link">
                 <font-awesome-icon :icon="['fas', 'user']" class="nav-icon" />
-                <a class="nav-link">登入</a>
-              </div>
+                <span>登入</span>
+                <span class="sr-only" v-if="isActive">(current)</span>
+              </a>
             </router-link>
           </div>
         </div>
@@ -86,47 +97,79 @@ $DarkerPink: #9d8189;
   top: 0;
   z-index: 10;
   background-color: $Pink;
-  .nav-icon {
-    color: $DarkerPink;
-    font-size: 1.3rem;
-    margin-bottom: -5px;
-  }
-  .nav-link {
-    color: $DarkerPink;
-    font-weight: bold;
-    font-size: 1.3rem;
-  }
-  .nav-logo {
-    font-weight: bold;
-    font-size: 2rem;
-    letter-spacing: 0.5rem;
-  }
-  .is-active {
-    background-color: $DarkerPink;
-    .nav-icon {
-      color: $Pink;
-    }
+  .nav-block {
+    width: 30%;
     .nav-link {
+      color: $DarkerPink;
+      font-weight: bold;
+      font-size: 1rem;
+      border-radius: 0.5rem;
+      margin-right: 0.5rem;
+      .nav-icon {
+        color: $DarkerPink;
+        font-size: 1rem;
+        margin-bottom: -5px;
+        margin: 0 0.5rem -0.05rem 0;
+      }
+      &:hover {
+        background-color: $DarkerPink;
+        text-decoration: none;
+        color: $Pink;
+        .nav-icon {
+          color: $Pink;
+        }
+      }
+    }
+    .is-active {
+      background-color: $DarkerPink;
       color: $Pink;
+      .nav-icon {
+        color: $Pink;
+      }
+    }
+    .nav-logo {
+      font-weight: bold;
+      font-size: 2rem;
+      letter-spacing: 0.5rem;
+      margin-right: -0.5rem;
+      &:hover {
+        background-color: $Pink;
+        color: $DarkerPink;
+      }
     }
   }
 }
 
-.header-top {
-  background-color: rgba(0, 0, 0, 0.2);
-  .nav-icon {
-    color: white;
-  }
+.nav-block-right {
+  justify-content: flex-end;
   .nav-link {
-    color: white;
+    margin-right: 0;
+    margin-left: 0.5rem;
   }
-  .is-active {
-    background-color: rgba(0, 0, 0, 0.2);
-    .nav-icon {
-      color: white;
-    }
+}
+
+.header-top {
+  background-color: rgba(255, 255, 255, 0.2);
+  .nav-block {
     .nav-link {
       color: white;
+      .nav-icon {
+        color: white;
+      }
+      &:hover {
+        background-color: rgba(255, 255, 255, 0);
+        color: white;
+        .nav-icon {
+          color: white;
+        }
+      }
+    }
+    .is-active {
+      background-color: rgba(255, 255, 255, 0);
+      color: white;
+      .nav-icon {
+        color: white;
+      }
     }
   }
 }

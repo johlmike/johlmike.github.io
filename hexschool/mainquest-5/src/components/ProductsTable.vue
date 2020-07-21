@@ -1,5 +1,5 @@
 <template>
-  <div class="d-flex flex-row flex-wrap justify-content-between">
+  <div class="d-flex flex-row flex-wrap justify-content-start">
     <div v-for="(product, index) in products" :key="'product' + index" class="card">
       <div class="card-top">
         <img :src="product.imageUrl[0]" class="card-img-top" />
@@ -27,16 +27,20 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .card {
   width: 32%;
   padding-top: 2%;
-  margin-bottom: 2%;
+  margin-right: 0.5rem;
+  margin-bottom: 0.5rem;
   border: 1.5px solid rgba(0,0,0,.125);
 }
 .card-top {
   height: 200px;
   overflow: hidden;
+  img {
+    width: 99%;
+  }
 }
 .card-title {
   white-space: nowrap;

@@ -10,7 +10,7 @@
           />
         </div>
         <div class="col-md-9">
-          <ProductsTable :products="products" />
+          <ProductsTable :products="filtedProducts" />
         </div>
       </div>
     </div>
@@ -69,6 +69,16 @@ export default {
   },
   created() {
     this.getProducts();
+  },
+  computed: {
+    filtedProducts() {
+      if (this.activeCategory === '所有商品') {
+        return this.products;
+      }
+      return this.products.filter(
+        (product) => product.category === this.activeCategory,
+      );
+    },
   },
 };
 </script>

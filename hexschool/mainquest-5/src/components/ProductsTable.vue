@@ -118,6 +118,8 @@ export default {
             .post(url, data)
             .then((res) => {
               loader.hide();
+              // 更新本地端之購物車內容
+              this.cart.unshift(this._.cloneDeep(res.data.data));
               $('.addCartModal').modal('hide');
               console.log('加入購物車成功', res);
             })
@@ -140,7 +142,29 @@ export default {
         });
     },
     updateCart() {
-      console.log('update');
+      const loader = this.$loading.show();
+      const url = `${this.baseUrl}${this.uuid}/ec/shopping`;
+      // 找出購物車之商品數量，並將使用者輸入之數量往上加
+      const addingId = this.addingProduct.id;
+      const cartProduct = this.cart.find((cartItem) => cartItem.product.id === addingId);
+      const originalQuantity = cartProduct.quantity;
+      const data = {
+        product: this.addingProduct.id,
+        quantity: originalQuantity + this.addingQuantity,
+      };
+      this.axios
+        .patch(url, data)
+        .then((res) => {
+          loader.hide();
+          // 更新本地端購物車之商品數量
+          cartProduct.quantity = data.quantity;
+          $('.addCartModal').modal('hide');
+          console.log('加入購物車成功', res);
+        })
+        .catch((err) => {
+          loader.hide();
+          console.log(err.response);
+        });
     },
   },
   created() {

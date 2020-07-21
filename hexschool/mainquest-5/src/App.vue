@@ -37,17 +37,4 @@ export default {
   color: #2c3e50;
   background-color: #D8E2DC;
 }
-
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
-}
 </style>

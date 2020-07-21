@@ -15,7 +15,7 @@
         </button>
         <div class="container-fluid d-flex justify-content-round">
           <div class="nav-block d-flex flex-row">
-            <router-link to="/" v-slot="{ isActive, href }">
+            <router-link to="/" v-slot="{ isActive, href }" exact>
               <a :href="href" :class="{'is-active': isActive}" class="nav-link">
                 <font-awesome-icon :icon="['fas', 'home']" class="nav-icon" />
                 <span>首頁</span>
@@ -39,22 +39,13 @@
           </div>
 
           <div class="nav-block">
-            <router-link to="/">
+            <router-link to="/home">
               <a class="nav-link nav-logo">萌兔窩</a>
             </router-link>
           </div>
 
           <div class="nav-block nav-block-right d-flex flex-row">
-            <!-- <router-link to="/about" v-slot="{ isActive, href }">
-              <a :href="href" :class="{'is-active': isActive}">
-                <a class="nav-link">
-                  <font-awesome-icon :icon="['fas', 'book']" class="nav-icon" />
-                  <span>兔知識</span>
-                  <span class="sr-only" v-if="isActive">(current)</span>
-                </a>
-              </a>
-            </router-link>-->
-            <router-link to="/about" v-slot="{ isActive, href }">
+            <router-link to="/cart" v-slot="{ isActive, href }">
               <a :href="href" :class="{'is-active': isActive}" class="nav-link">
                 <font-awesome-icon :icon="['fas', 'shopping-cart']" class="nav-icon" />
                 <span>購物車</span>
@@ -93,6 +84,9 @@ $DarkPink: #f4acb7;
 $DarkerPink: #9d8189;
 
 .header {
+  nav {
+    height: 3.5rem;
+  }
   position: fixed;
   top: 0;
   z-index: 10;
@@ -174,10 +168,3 @@ $DarkerPink: #9d8189;
   }
 }
 </style>
-
-// 姓名：必填
-// Email：須符合格式
-// 電話：必填，超過 8 碼，input type 為 tel
-// 地址：必填
-// 付款方式：WebATM、ATM、Barcode、Credit、ApplePay、GooglePay
-// 留言：非必填

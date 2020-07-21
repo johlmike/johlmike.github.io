@@ -17,6 +17,7 @@ import {
   faPlusSquare,
   faMinusSquare,
   faChevronDown,
+  faTrashAlt,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import Loading from 'vue-loading-overlay';
@@ -63,6 +64,7 @@ library.add(
   faPlusSquare,
   faMinusSquare,
   faChevronDown,
+  faTrashAlt,
 );
 Vue.component('font-awesome-icon', FontAwesomeIcon);
 

@@ -1,7 +1,7 @@
 <template>
   <div>
-    <div class="header container-fluid" :class="{'header-pink': !isTop}">
-      <nav class="navbar navbar-expand-lg">
+    <div class="header container-fluid" :class="{'header-top': isTop}">
+      <nav class="navbar navbar-expand-lg py-0">
         <button
           class="navbar-toggler"
           type="button"
@@ -15,16 +15,23 @@
         </button>
         <div class="container d-flex justify-content-between">
           <div class="d-flex flex-row">
-            <router-link to="/">
-              <font-awesome-icon :icon="['fas', 'home']" class="nav-icon" />
-              <a class="nav-link" href="#">
-                首頁
-                <span class="sr-only">(current)</span>
-              </a>
+            <router-link to="/" v-slot="{ isActive }">
+              <div class="pt-2" :class="{'is-active': isActive}">
+                <font-awesome-icon :icon="['fas', 'home']" class="nav-icon" />
+                <a class="nav-link" href="#">
+                  首頁
+                  <span class="sr-only" v-if="isActive">(current)</span>
+                </a>
+              </div>
             </router-link>
-            <router-link to="/">
-              <font-awesome-icon :icon="['fas', 'newspaper']" class="nav-icon" />
-              <a class="nav-link" href="#">最新消息</a>
+            <router-link to="/about">
+              <div class="pt-2" :class="{'is-active': isActive}">
+                <font-awesome-icon :icon="['fas', 'newspaper']" class="nav-icon" />
+                <a class="nav-link" href="#">
+                  最新消息
+                  <span class="sr-only" v-if="isActive">(current)</span>
+                </a>
+              </div>
             </router-link>
           </div>
 
@@ -35,13 +42,20 @@
           </div>
 
           <div class="d-flex flex-row">
-            <router-link to="/">
-              <font-awesome-icon :icon="['fas', 'shopping-cart']" class="nav-icon" />
-              <a class="nav-link" href="#">所有產品</a>
+            <router-link to="/about">
+              <div class="pt-2" :class="{'is-active': isActive}">
+                <font-awesome-icon :icon="['fas', 'shopping-cart']" class="nav-icon" />
+                <a class="nav-link" href="#">
+                  所有產品
+                  <span class="sr-only" v-if="isActive">(current)</span>
+                </a>
+              </div>
             </router-link>
-            <router-link to="/">
-              <font-awesome-icon :icon="['fas', 'user']" class="nav-icon" />
-              <a class="nav-link" href="#">登入</a>
+            <router-link to="/about">
+              <div class="pt-2" :class="{'is-active': isActive}">
+                <font-awesome-icon :icon="['fas', 'user']" class="nav-icon" />
+                <a class="nav-link" href="#">登入</a>
+              </div>
             </router-link>
           </div>
         </div>
@@ -55,37 +69,67 @@ export default {
   props: {
     isTop: Boolean,
   },
+  data() {
+    return {
+      isActive: false,
+    };
+  },
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+$Alabaster: #d8e2dc;
+$Pink: #ffcad4;
+$DarkPink: #f4acb7;
+$DarkerPink: #9d8189;
+
 .header {
-  width: 100%;
   position: fixed;
   top: 0;
   z-index: 10;
-  color: white;
+  background-color: $Pink;
+  .nav-icon {
+    color: $DarkerPink;
+    font-size: 1.3rem;
+    margin-bottom: -5px;
+  }
+  .nav-link {
+    color: $DarkerPink;
+    font-weight: bold;
+    font-size: 1.3rem;
+  }
+  .nav-logo {
+    font-weight: bold;
+    font-size: 2rem;
+  }
+  .is-active {
+    background-color: $DarkerPink;
+    .nav-icon {
+      color: $Pink;
+    }
+    .nav-link {
+      color: $Pink;
+    }
+  }
 }
 
-.header-pink {
-  background-color: pink;
-}
-
-.nav-link {
-  color: white;
-  font-weight: bold;
-  font-size: 1.3rem;
-}
-
-.nav-logo {
-  font-weight: bold;
-  font-size: 2rem;
-}
-
-.nav-icon {
-  color: white;
-  font-size: 1.3rem;
-  margin-bottom: -5px;
+.header-top {
+  background-color: rgba(0, 0, 0, 0.2);
+  .nav-icon {
+    color: white;
+  }
+  .nav-link {
+    color: white;
+  }
+  .is-active {
+    background-color: rgba(0, 0, 0, 0.2);
+    .nav-icon {
+      color: white;
+    }
+    .nav-link {
+      color: white;
+    }
+  }
 }
 </style>
 

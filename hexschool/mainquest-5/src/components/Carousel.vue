@@ -51,26 +51,9 @@ export default {
     bottom: 30px;
     font-size: 3.5rem;
   }
-  20% {
-    bottom: 18px;
-    font-size: 3rem;
-  }
-  40% {
-    bottom: 6px;
-    font-size: 2.5rem;
-  }
   50% {
     bottom: 0px;
     font-size: 2rem;
-  }
-  60% {
-    bottom: 6px;
-    font-size: 2.5rem;
-
-  }
-  80% {
-    bottom: 18px;
-    font-size: 3rem;
   }
   100% {
     bottom: 30px;

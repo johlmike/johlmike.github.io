@@ -121,7 +121,6 @@ export default {
               // 更新本地端之購物車內容
               this.cart.unshift(this._.cloneDeep(res.data.data));
               $('.addCartModal').modal('hide');
-              console.log('加入購物車成功', res);
             })
             .catch((err) => {
               loader.hide();
@@ -154,12 +153,11 @@ export default {
       };
       this.axios
         .patch(url, data)
-        .then((res) => {
+        .then(() => {
           loader.hide();
           // 更新本地端購物車之商品數量
           cartProduct.quantity = data.quantity;
           $('.addCartModal').modal('hide');
-          console.log('加入購物車成功', res);
         })
         .catch((err) => {
           loader.hide();

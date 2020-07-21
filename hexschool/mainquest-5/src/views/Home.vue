@@ -1,5 +1,6 @@
 <template>
   <div class="home">
+    <NavBar :isTop="isTop"></NavBar>
     <Carousel :isTop="isTop"></Carousel>
     <div class="container">
       <div class="row">
@@ -22,6 +23,7 @@
 import Carousel from '@/components/Carousel.vue';
 import ProductCategory from '@/components/ProductsCategory.vue';
 import ProductsTable from '@/components/ProductsTable.vue';
+import NavBar from '@/components/NavBar.vue';
 
 export default {
   name: 'Home',
@@ -32,6 +34,7 @@ export default {
     Carousel,
     ProductCategory,
     ProductsTable,
+    NavBar,
   },
   data() {
     return {

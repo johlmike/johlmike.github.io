@@ -1,17 +1,11 @@
 <template>
   <div id="app">
-    <NavBar :isTop="isTop"></NavBar>
     <router-view :isTop="isTop" />
   </div>
 </template>
 
 <script>
-import NavBar from '@/components/NavBar.vue';
-
 export default {
-  components: {
-    NavBar,
-  },
   data() {
     return {
       isTop: true,

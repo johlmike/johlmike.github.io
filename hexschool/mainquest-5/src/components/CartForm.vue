@@ -72,15 +72,21 @@
           </div>
           <div class="form-group">
             <label for="message">留言</label>
-            <textarea class="form-control" id="message" rows="3"
-            v-model="userData.message"></textarea>
+            <textarea
+              class="form-control"
+              id="message"
+              rows="3"
+              v-model="userData.message"
+            ></textarea>
           </div>
           <button
             type="submit"
             class="btn btn-primary btn-submit"
             v-on:click.prevent="sendOrder"
             :disabled="invalid"
-          >送出訂單</button>
+          >
+            送出訂單
+          </button>
         </form>
       </ValidationObserver>
     </div>

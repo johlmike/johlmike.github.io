@@ -26,7 +26,7 @@
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title">{{addingProduct.title}}</h5>
+            <h5 class="modal-title">{{ addingProduct.title }}</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -34,7 +34,7 @@
           <div class="modal-body no_selection">
             <div class="modal-img">
               <img
-                :src=" addingProduct.imageUrl ? addingProduct.imageUrl[0] : '' "
+                :src="addingProduct.imageUrl ? addingProduct.imageUrl[0] : ''"
                 :alt="addingProduct.title"
               />
             </div>
@@ -42,7 +42,11 @@
               <font-awesome-icon
                 :icon="['fas', 'minus-square']"
                 class="icon-quantity"
-                @click="()=>{if(addingQuantity > 1)addingQuantity--}"
+                @click="
+                  () => {
+                    if (addingQuantity > 1) addingQuantity--;
+                  }
+                "
               />
               <ValidationProvider rules="min_value:1|required" v-slot="{ errors, classes }">
                 <input
@@ -69,7 +73,9 @@
               class="btn btn-primary"
               @click="addCart"
               :disabled="addingQuantity < 1"
-            >加入購物車</button>
+            >
+              加入購物車
+            </button>
           </div>
         </div>
       </div>

@@ -1,32 +1,8 @@
 <template>
   <div id="app">
-    <router-view :isTop="isTop" />
+    <router-view />
   </div>
 </template>
-
-<script>
-export default {
-  data() {
-    return {
-      isTop: true,
-    };
-  },
-  methods: {
-    updateScroll() {
-      if (window.scrollY) {
-        // 已滑動
-        this.isTop = false;
-      } else {
-        this.isTop = true; // 最上方
-      }
-    },
-  },
-  mounted() {
-    // 監聽 scroll 事件，調整滑動提示和導覽列的顯示
-    window.addEventListener('scroll', this.updateScroll);
-  },
-};
-</script>
 
 <style lang="scss">
 #app {
@@ -35,6 +11,6 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  background-color: #D8E2DC;
+  // background-color: #D8E2DC;
 }
 </style>

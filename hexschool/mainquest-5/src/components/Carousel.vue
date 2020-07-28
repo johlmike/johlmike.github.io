@@ -26,6 +26,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+// 因暫時無法編輯圖片，故使用css調整位置，看起來好看一點
 .carousel-item img {
   position: absolute;
   top: -130px;

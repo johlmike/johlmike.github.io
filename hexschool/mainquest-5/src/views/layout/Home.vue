@@ -27,9 +27,6 @@ import NavBar from '@/components/NavBar.vue';
 
 export default {
   name: 'Home',
-  props: {
-    isTop: Boolean,
-  },
   components: {
     Carousel,
     ProductCategory,
@@ -51,6 +48,7 @@ export default {
       products: [],
       activeCategory: '所有商品',
       totalPages: 1,
+      isTop: true,
     };
   },
   methods: {
@@ -69,9 +67,21 @@ export default {
     handleCategoryChange(activeCategory) {
       this.activeCategory = activeCategory;
     },
+    updateScroll() {
+      if (window.scrollY) {
+        // 已滑動
+        this.isTop = false;
+      } else {
+        this.isTop = true; // 最上方
+      }
+    },
   },
   created() {
     this.getProducts();
+  },
+  mounted() {
+    // 監聽 scroll 事件，調整滑動提示和導覽列的顯示
+    window.addEventListener('scroll', this.updateScroll);
   },
   computed: {
     filtedProducts() {
@@ -87,4 +97,7 @@ export default {
 </script>
 
 <style scoped>
+.home {
+  background-color: #D8E2DC;
+}
 </style>

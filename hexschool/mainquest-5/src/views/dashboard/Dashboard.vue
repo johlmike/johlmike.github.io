@@ -1,11 +1,22 @@
 <template>
-  <div>
-    Dashboard
+  <div class="dashboard">
+    <DNavbar></DNavbar>
+    <router-view />
   </div>
 </template>
 
 <script>
-export default {};
+import DNavbar from '@/components/DNavbar.vue';
+
+export default {
+  components: {
+    DNavbar,
+  },
+};
 </script>
 
-<style></style>
+<style>
+.dashboard {
+  min-height: 100vh;
+}
+</style>

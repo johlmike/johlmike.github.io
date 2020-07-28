@@ -14,10 +14,40 @@ const routes = [
     name: 'Cart',
     component: () => import('../views/layout/Cart.vue'),
   },
+  // 因為考慮到普遍都會使用 "admin"、"dashboard" 等詞
+  // 所以用特殊的名稱命名後台，避免被猜出後台路徑
+  // 但我不確定這種作法是否需要及恰當，故附上註解
+  {
+    path: '/master-login',
+    name: 'MasterLogin',
+    component: () => import('../views/AdminLogin.vue'),
+  },
   {
     path: '/master-rabbit',
     name: 'Dashboard',
     component: () => import('../views/dashboard/Dashboard.vue'),
+    children: [
+      {
+        path: '/',
+        name: 'ProductsManage',
+        component: () => import('../views/dashboard/ProductsManage.vue'),
+      },
+      {
+        path: 'coupon-manage',
+        name: 'CouponManage',
+        component: () => import('../views/dashboard/CouponManage.vue'),
+      },
+      {
+        path: 'order-manage',
+        name: 'OrderManage',
+        component: () => import('../views/dashboard/OrderManage.vue'),
+      },
+      {
+        path: 'picture-manage',
+        name: 'PictureManage',
+        component: () => import('../views/dashboard/PictureManage.vue'),
+      },
+    ],
   },
 ];
 

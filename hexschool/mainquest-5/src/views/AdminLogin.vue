@@ -88,12 +88,14 @@ export default {
       };
       this.axios
         .post(url, tokenData)
-        .then((res) => {
+        .then(() => {
           loader.hide();
           this.$router.push('/master-rabbit');
         })
         .catch((err) => {
           loader.hide();
+          // 驗證失敗，刪除舊的token
+          document.cookie = 'moerabbitworld-token=;';
           console.log(err.response);
         });
     }

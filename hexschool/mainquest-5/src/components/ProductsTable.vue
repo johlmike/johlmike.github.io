@@ -2,7 +2,9 @@
   <div class="d-flex flex-row flex-wrap justify-content-start">
     <div v-for="(product, index) in products" :key="'product' + index" class="card">
       <div class="card-top">
-        <img :src="product.imageUrl[0]" class="card-img-top" />
+        <router-link :to="`/product/${product.id}`">
+          <img :src="product.imageUrl[0]" class="card-img-top" />
+        </router-link>
       </div>
       <div class="d-flex flex-column justify-content-start card-body">
         <h5 class="card-title">{{ product.title }}</h5>

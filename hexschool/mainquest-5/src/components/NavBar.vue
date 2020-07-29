@@ -22,24 +22,18 @@
                 <span class="sr-only" v-if="isActive">(current)</span>
               </a>
             </router-link>
-            <!-- <router-link to="/" v-slot="{ isActive, href }">
+            <router-link to="/about" v-slot="{ isActive, href }">
               <a :href="href" :class="{'is-active': isActive}" class="nav-link">
-                <font-awesome-icon :icon="['fas', 'newspaper']" class="nav-icon" />
-                <span>最新消息</span>
+                <font-awesome-icon :icon="['fas', 'carrot']" class="nav-icon" />
+                <span>關於我們</span>
                 <span class="sr-only" v-if="isActive">(current)</span>
               </a>
             </router-link>
-            <router-link to="/" v-slot="{ isActive, href }">
-              <a :href="href" :class="{'is-active': isActive}" class="nav-link">
-                <font-awesome-icon :icon="['fas', 'carrot']" class="nav-icon" />
-                <span>產品</span>
-                <span class="sr-only" v-if="isActive">(current)</span>
-              </a>
-            </router-link> -->
           </div>
 
           <div class="nav-block logo">
-            <img src="../assets/logo.svg" alt="萌兔窩Logo">
+            <img v-show="isTop" src="../assets/logo_top.svg" alt="萌兔窩Logo">
+            <img v-show="!isTop" src="../assets/logo.svg" alt="萌兔窩Logo">
           </div>
 
           <div class="nav-block nav-block-right d-flex flex-row">
@@ -50,13 +44,13 @@
                 <span class="sr-only" v-if="isActive">(current)</span>
               </a>
             </router-link>
-            <router-link to="/about" v-slot="{ isActive, href }">
+            <!-- <router-link to="/user-login" v-slot="{ isActive, href }">
               <a :href="href" :class="{'is-active': isActive}" class="nav-link">
                 <font-awesome-icon :icon="['fas', 'user']" class="nav-icon" />
                 <span>登入</span>
                 <span class="sr-only" v-if="isActive">(current)</span>
               </a>
-            </router-link>
+            </router-link> -->
           </div>
         </div>
       </nav>

@@ -1,7 +1,7 @@
 <template>
   <div>
     <NavBar :isTop="false"></NavBar>
-    <div class="about">
+    <div class="product">
       產品頁面
     </div>
   </div>
@@ -18,7 +18,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.about {
+.product {
   margin-top: 3.5rem;
 }
 </style>

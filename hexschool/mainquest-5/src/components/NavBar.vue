@@ -22,7 +22,6 @@
                 <span class="sr-only" v-if="isActive">(current)</span>
               </a>
             </router-link>
-            <!-- 暫時註解掉尚未完成的分頁 -->
             <!-- <router-link to="/" v-slot="{ isActive, href }">
               <a :href="href" :class="{'is-active': isActive}" class="nav-link">
                 <font-awesome-icon :icon="['fas', 'newspaper']" class="nav-icon" />
@@ -39,10 +38,8 @@
             </router-link> -->
           </div>
 
-          <div class="nav-block">
-            <router-link to="/home">
-              <a class="nav-link nav-logo">萌兔窩</a>
-            </router-link>
+          <div class="nav-block logo">
+            <img src="../assets/logo.svg" alt="萌兔窩Logo">
           </div>
 
           <div class="nav-block nav-block-right d-flex flex-row">
@@ -166,6 +163,13 @@ $DarkerPink: #9d8189;
         color: white;
       }
     }
+  }
+}
+
+.logo {
+  height: 3.5rem;
+  img {
+    height: 100%;
   }
 }
 </style>

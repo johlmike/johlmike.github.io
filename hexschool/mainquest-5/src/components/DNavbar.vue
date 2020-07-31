@@ -34,7 +34,7 @@
             </router-link>
           </div>
           <div class="nav-block d-flex flex-row">
-            <a href="#" class="nav-link">
+            <a href="#" class="nav-link" @click.prevent="logout">
               <font-awesome-icon :icon="['fas', 'shopping-cart']" class="nav-icon" />
               <span>登出</span>
             </a>
@@ -46,7 +46,14 @@
 </template>
 
 <script>
-export default {};
+export default {
+  methods: {
+    logout() {
+      document.cookie = 'moerabbitworld-token=;';
+      this.$router.push('/master-login');
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>

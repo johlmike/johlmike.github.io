@@ -24,7 +24,12 @@ const routes = [
     name: 'About',
     component: () => import('../views/layout/About.vue'),
   },
-  // 感覺要有使用者登入的畫面，但不在作業範圍內故暫時註解
+  {
+    path: '/checkout',
+    name: 'Checkout',
+    component: () => import('../views/layout/Checkout.vue'),
+  },
+  // 感覺要有使用者登入的畫面比較合理，但不在作業範圍內故暫時註解
   // {
   //   path: '/user-login',
   //   name: 'UserLogin',

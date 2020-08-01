@@ -11,7 +11,7 @@
         </div>
         <div class="cart-table-body">
           <div v-if="cart.length === 0" class="empty">
-            購物車還空空的喔～快來幫家裡的小萌兔買點東西吧！
+            購物車還空空的喔～快去逛逛吧！
           </div>
           <div v-for="(cartItem, index) in cart" :key="'cart_' + index" class="body-item row py-3">
             <div class="col-5 body-item-title">{{ cartItem.product.title }}</div>
@@ -41,6 +41,9 @@
         </div>
         <div class="cart-table-footer row">
           <div class="offset-9 col-2">共 NT$ {{ sumPrice }} 元</div>
+          <div>
+            <button>結帳去</button>
+          </div>
         </div>
       </div>
     </div>

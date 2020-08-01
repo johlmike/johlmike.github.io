@@ -1,13 +1,15 @@
 <template>
-  <div>
+  <div class="products-category">
     <ul class="list-group">
       <li
         v-for="(category, index) in categoryList"
         :key="'cat_' + index"
         class="list-group-item"
-        :class="{active: index === 0}"
+        :class="{ active: index === 0 }"
         @click="handleClick(category)"
-      >{{ category }}</li>
+      >
+        {{ category }}
+      </li>
     </ul>
   </div>
 </template>
@@ -39,6 +41,12 @@ export default {
 </script>
 
 <style scoped>
+.products-category {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 6.5rem;
+}
+
 .list-group-item {
   cursor: pointer;
 }

@@ -5,13 +5,14 @@
 </template>
 
 <style lang="scss">
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&display=swap');
 $Alabaster: #d8e2dc;
 $Pink: #ffcad4;
 $DarkPink: #f4acb7;
 $DarkerPink: #9d8189;
 
 #app {
-  font-family: '微軟正黑體', Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'Noto Sans TC', Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;

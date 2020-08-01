@@ -20,5 +20,6 @@ $DarkerPink: #9d8189;
 }
 body {
   background-color: $Alabaster;
+  height: 100%;
 }
 </style>

@@ -74,10 +74,6 @@ const routes = [
 
 const router = new VueRouter({
   routes,
-  // 每次切換頁面時，將畫面移回頂部
-  scrollBehavior() {
-    return { x: 0, y: 0 };
-  },
 });
 
 export default router;

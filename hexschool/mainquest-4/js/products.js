@@ -85,7 +85,7 @@ const app = new Vue({
           console.log(err.response);
         });
     },
-    getAllpProductsDesc() {
+    getAllProductsDesc() {
       this.isLoading = true; // 讀取中
       this.products.forEach((product, index) => {
         if (index !== this.products.length - 1) {

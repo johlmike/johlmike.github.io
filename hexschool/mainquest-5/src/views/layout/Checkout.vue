@@ -133,7 +133,6 @@ export default {
             payment: 'WebATM',
             message: '',
           };
-          // this.$bus.$emit('clearCart');
           this.$router.push('/');
         })
         .catch((err) => {

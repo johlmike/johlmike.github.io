@@ -22,18 +22,8 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import Loading from 'vue-loading-overlay';
 import 'vue-loading-overlay/dist/vue-loading.css';
-import {
-  ValidationProvider,
-  ValidationObserver,
-  extend,
-  configure,
-} from 'vee-validate';
-import {
-  required,
-  min_value as minValue,
-  email,
-  min,
-} from 'vee-validate/dist/rules';
+import { ValidationProvider, ValidationObserver, extend, configure } from 'vee-validate';
+import { required, min_value as minValue, email, min } from 'vee-validate/dist/rules';
 import VueLodash from 'vue-lodash';
 import lodash from 'lodash';
 import App from './App.vue';
@@ -83,11 +73,9 @@ library.add(
   faPlusSquare,
   faMinusSquare,
   faChevronDown,
-  faTrashAlt,
+  faTrashAlt
 );
 Vue.component('font-awesome-icon', FontAwesomeIcon);
-
-Vue.prototype.$bus = new Vue();
 
 new Vue({
   router,

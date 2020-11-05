@@ -61,8 +61,29 @@ a {
         -ms-flex-align: center;
             align-items: center;
   }
+  .navbar__logo {
+    width: 100%;
+    border-bottom: 1px solid #ffffff;
+  }
+  .navbar__logo img {
+    margin: 10px auto;
+  }
+  .navbar__list {
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    width: 100%;
+  }
   .navbar__list__item {
     margin-left: 0px;
+    width: 50%;
+    text-align: center;
+    padding: 8px 0;
+  }
+  .navbar__list__item:nth-child(even) {
+    border-left: 1px solid #ffffff;
+  }
+  .navbar__list__item:nth-child(1), .navbar__list__item:nth-child(2) {
+    border-bottom: 1px solid #ffffff;
   }
 }
 /*# sourceMappingURL=style.css.map */

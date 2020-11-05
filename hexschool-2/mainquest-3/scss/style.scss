@@ -1,3 +1,4 @@
+// common
 *,
 *::before,
 *::after {
@@ -46,7 +47,28 @@ $primary: #aa0601;
     padding: 0;
     align-items: center;
   }
+  .navbar__logo {
+    width: 100%;
+    border-bottom: 1px solid #ffffff;
+    img {
+      margin: 10px auto;
+    }
+  }
+  .navbar__list {
+    flex-wrap: wrap;
+    width: 100%;
+  }
   .navbar__list__item {
     margin-left: 0px;
+    width: 50%;
+    text-align: center;
+    padding: 8px 0;
+    &:nth-child(even) {
+      border-left: 1px solid #ffffff;
+    }
+    &:nth-child(1),
+    &:nth-child(2) {
+      border-bottom: 1px solid #ffffff;
+    }
   }
 }

@@ -1,0 +1,161 @@
+/* 通用 */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+img {
+  display: block;
+}
+
+body {
+  font-size: 24px;
+  line-height: 36px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+    "Microsoft JhengHei", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+hr {
+  margin: 0;
+}
+
+.content {
+  margin-top: 16px;
+  margin-bottom: 72px;
+}
+
+.title {
+  font-size: 32px;
+  line-height: 45px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.subtitle {
+  text-transform: uppercase;
+  line-height: 32px;
+  margin-left: 16px;
+  color: #a00404;
+}
+
+.full-width {
+  background-color: #415165;
+  width: 100vw;
+  padding-top: 24px;
+  padding-bottom: 36px;
+  .title {
+    color: #fff;
+    justify-content: center;
+  }
+
+  .subtitle {
+    color: #fff;
+  }
+
+  hr {
+    width: 996px;
+    margin: 0 auto;
+  }
+
+  .content {
+    display: flex;
+    justify-content: center;
+    margin: 40px auto 0 auto;
+    padding-left: 24px;
+    color: #fff;
+  }
+  .skills-list {
+    border-left: 1px solid #fff;
+    padding-left: 24px;
+    line-height: 32px;
+    li {
+      margin-bottom: 16px;
+      &:last-child {
+        margin: 0;
+      }
+    }
+  }
+}
+
+/* 個別 */
+.photo {
+  margin: 48px 0;
+}
+
+.header {
+  font-size: 80px;
+  line-height: 106px;
+  max-width: 264px;
+  margin-bottom: 3px;
+}
+
+.profile-list li:nth-child(3),
+.education-list li:nth-child(1) {
+  margin-bottom: 24px;
+}
+
+.skills {
+  margin-bottom: 72px;
+}
+
+.experience-list {
+  width: 642px;
+  border-left: 1px solid #96a9c4;
+  margin-left: 24px;
+  padding-left: 24px;
+  li {
+    margin-bottom: 24px;
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+  .experience-list-title {
+    line-height: 34px;
+  }
+  .experience-list-logo {
+    width: 90px;
+    height: 90px;
+    margin: 8px 0;
+  }
+  .experience-list-content {
+    font-size: 20px;
+    line-height: 30px;
+  }
+}
+
+.footer {
+  .content {
+    margin-top: 32px;
+    .footer-list {
+      text-align: center;
+      li {
+        margin-bottom: 16px;
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
+    .social-list {
+      display: flex;
+      justify-content: center;
+      li {
+        margin-bottom: 0;
+        margin-right: 24px;
+        &:last-child {
+          margin-right: 0;
+        }
+      }
+      img {
+        width: 48px;
+        height: 48px;
+      }
+    }
+  }
+}

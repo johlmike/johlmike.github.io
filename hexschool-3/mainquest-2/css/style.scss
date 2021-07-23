@@ -1,0 +1,149 @@
+/* 通用 */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+img {
+  display: block;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+    "Microsoft JhengHei", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+// common
+.container {
+  padding: 56px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  h3 {
+    font-size: 64px;
+    line-height: 84px;
+  }
+}
+
+.header {
+  height: 958px;
+  background-image: url("https://hexschool.github.io/webLayoutTraining1st/week2/banner.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  p,
+  h2 {
+    font-size: 24px;
+    line-height: 32px;
+  }
+  h1 {
+    font-size: 80px;
+    line-height: 106px;
+    margin-bottom: 32px;
+  }
+  h2 {
+    font-size: 24px;
+    line-height: 36px;
+    margin-bottom: 40px;
+  }
+  .social-list {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+.about {
+  h3 {
+    margin-bottom: 40px;
+  }
+  img {
+    width: 384px;
+    height: 384px;
+    margin-bottom: 20px;
+  }
+  ul {
+    font-size: 24px;
+    line-height: 36px;
+    font-weight: bold;
+  }
+  .basic-info-list {
+    text-align: center;
+    padding-bottom: 24px;
+    li {
+      margin-bottom: 8px;
+    }
+  }
+  .personal-title-list {
+    border-top: 1px solid #000;
+    padding-top: 28px;
+    li {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 28px;
+      &:last-child {
+        margin-bottom: 0;
+      }
+      .dot {
+        width: 22px;
+        height: 22px;
+        margin-right: 16px;
+        border-radius: 50%;
+        background-color: #891818;
+      }
+    }
+  }
+}
+
+.brand {
+  background-color: black;
+  color: white;
+  padding-bottom: 160px;
+  h3 {
+    margin-bottom: 12px;
+  }
+  h4 {
+    margin-bottom: 32px;
+    font-size: 24px;
+    line-height: 32px;
+  }
+  p {
+    font-size: 20px;
+    line-height: 30px;
+    text-align: center;
+    margin-bottom: 68px;
+  }
+  .brand-list {
+    display: flex;
+    flex-wrap: wrap;
+    width: 1200px;
+    justify-content: space-between;
+    li {
+      height: 416px;
+      background-position: center;
+      background-size: cover;
+      text-indent: 101%;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+    .brand-item-1 {
+      margin: 0 auto;
+      width: 792px;
+      background-image: url("https://hexschool.github.io/webLayoutTraining1st/week2/brand_img1.png");
+    }
+    .brand-item-2 {
+      width: 588px;
+      background-image: url("https://hexschool.github.io/webLayoutTraining1st/week2/brand_img2.png");
+    }
+    .brand-item-3 {
+      width: 588px;
+      background-image: url("https://hexschool.github.io/webLayoutTraining1st/week2/brand_img3.png");
+    }
+  }
+}

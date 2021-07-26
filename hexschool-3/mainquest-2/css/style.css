@@ -13,6 +13,7 @@ img {
 
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft JhengHei", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-size: 24px;
 }
 
 .container {
@@ -54,13 +55,7 @@ body {
 }
 
 .header p {
-  font-size: 24px;
   line-height: 42px;
-}
-
-.header h2 {
-  font-size: 24px;
-  line-height: 32px;
 }
 
 .header h1 {
@@ -70,7 +65,6 @@ body {
 }
 
 .header h2 {
-  font-size: 24px;
   line-height: 36px;
   margin-bottom: 40px;
 }
@@ -105,7 +99,6 @@ body {
 }
 
 .about ul {
-  font-size: 24px;
   line-height: 42px;
   font-weight: bold;
 }
@@ -166,7 +159,6 @@ body {
 
 .brand h4 {
   margin-bottom: 32px;
-  font-size: 24px;
   line-height: 42px;
 }
 
@@ -258,7 +250,6 @@ body {
 }
 
 .contact .contact-list {
-  font-size: 24px;
   line-height: 36px;
 }
 
@@ -268,7 +259,6 @@ body {
 
 .contact .contact-list li a {
   color: white;
-  font-size: 24px;
   line-height: 36px;
   text-decoration: none;
 }

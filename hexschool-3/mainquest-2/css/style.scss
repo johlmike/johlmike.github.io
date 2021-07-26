@@ -12,6 +12,7 @@ img {
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
     "Microsoft JhengHei", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-size: 24px;
 }
 
 // common
@@ -38,12 +39,7 @@ body {
   align-items: center;
   font-weight: bold;
   p {
-    font-size: 24px;
     line-height: 42px;
-  }
-  h2 {
-    font-size: 24px;
-    line-height: 32px;
   }
   h1 {
     font-size: 80px;
@@ -51,7 +47,6 @@ body {
     margin-bottom: 32px;
   }
   h2 {
-    font-size: 24px;
     line-height: 36px;
     margin-bottom: 40px;
   }
@@ -78,7 +73,6 @@ body {
     margin-bottom: 20px;
   }
   ul {
-    font-size: 24px;
     line-height: 42px;
     font-weight: bold;
   }
@@ -124,7 +118,6 @@ body {
   }
   h4 {
     margin-bottom: 32px;
-    font-size: 24px;
     line-height: 42px;
   }
   p {
@@ -193,13 +186,11 @@ body {
     margin-bottom: 16px;
   }
   .contact-list {
-    font-size: 24px;
     line-height: 36px;
     li {
       margin-bottom: 16px;
       a {
         color: white;
-        font-size: 24px;
         line-height: 36px;
         text-decoration: none;
         &:hover {

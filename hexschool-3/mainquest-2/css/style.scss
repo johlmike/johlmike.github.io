@@ -37,7 +37,10 @@ body {
   justify-content: center;
   align-items: center;
   font-weight: bold;
-  p,
+  p {
+    font-size: 24px;
+    line-height: 42px;
+  }
   h2 {
     font-size: 24px;
     line-height: 32px;
@@ -69,7 +72,7 @@ body {
   }
   ul {
     font-size: 24px;
-    line-height: 36px;
+    line-height: 42px;
     font-weight: bold;
   }
   .basic-info-list {
@@ -77,6 +80,10 @@ body {
     padding-bottom: 24px;
     li {
       margin-bottom: 8px;
+      &:last-child{
+        margin-bottom: 0;
+        line-height: 36px;
+      }
     }
   }
   .personal-title-list {
@@ -111,7 +118,7 @@ body {
   h4 {
     margin-bottom: 32px;
     font-size: 24px;
-    line-height: 32px;
+    line-height: 42px;
   }
   p {
     font-size: 20px;

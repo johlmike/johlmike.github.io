@@ -84,6 +84,16 @@ body {
           justify-content: space-between;
 }
 
+.header .social-list img {
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+  opacity: 1;
+}
+
+.header .social-list img:hover {
+  opacity: 0.7;
+}
+
 .about h3 {
   margin-bottom: 40px;
 }
@@ -180,27 +190,90 @@ body {
 }
 
 .brand .brand-list li {
-  height: 416px;
-  background-position: center;
-  background-size: cover;
-  text-indent: 101%;
-  white-space: nowrap;
-  overflow: hidden;
+  width: 588px;
 }
 
-.brand .brand-list .brand-item-1 {
+.brand .brand-list li:first-child {
   margin: 0 auto;
   width: 792px;
-  background-image: url("https://hexschool.github.io/webLayoutTraining1st/week2/brand_img1.png");
+  margin-bottom: 40px;
 }
 
-.brand .brand-list .brand-item-2 {
-  width: 588px;
-  background-image: url("https://hexschool.github.io/webLayoutTraining1st/week2/brand_img2.png");
+.works {
+  padding-bottom: 144px;
 }
 
-.brand .brand-list .brand-item-3 {
+.works h3 {
+  margin-bottom: 16px;
+}
+
+.works h4 {
+  font-size: 20px;
+  line-height: 30px;
+  text-align: center;
+  margin-bottom: 56px;
+}
+
+.works .works-list {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  width: 1200px;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.works .works-list h5 {
+  margin-top: 16px;
+  font-size: 20px;
+  line-height: 42px;
+  text-align: center;
+}
+
+.works .works-list .first-row {
+  width: 384px;
+  margin-bottom: 48px;
+}
+
+.works .works-list .second-row {
   width: 588px;
-  background-image: url("https://hexschool.github.io/webLayoutTraining1st/week2/brand_img3.png");
+  margin-bottom: 48px;
+}
+
+.works .works-list .third-row {
+  width: 384px;
+}
+
+.contact {
+  background-color: black;
+  color: white;
+  padding: 64px 0;
+}
+
+.contact h3 {
+  margin-bottom: 16px;
+}
+
+.contact .contact-list {
+  font-size: 24px;
+  line-height: 36px;
+}
+
+.contact .contact-list li {
+  margin-bottom: 16px;
+}
+
+.contact .contact-list li a {
+  color: white;
+  font-size: 24px;
+  line-height: 36px;
+  text-decoration: none;
+}
+
+.contact .contact-list li a:hover {
+  text-decoration: underline;
 }
 /*# sourceMappingURL=style.css.map */

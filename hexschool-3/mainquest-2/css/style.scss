@@ -58,6 +58,13 @@ body {
   .social-list {
     display: flex;
     justify-content: space-between;
+    img {
+      transition: 0.3s;
+      opacity: 1;
+      &:hover {
+        opacity: 0.7;
+      }
+    }
   }
 }
 
@@ -80,7 +87,7 @@ body {
     padding-bottom: 24px;
     li {
       margin-bottom: 8px;
-      &:last-child{
+      &:last-child {
         margin-bottom: 0;
         line-height: 36px;
       }
@@ -132,25 +139,73 @@ body {
     width: 1200px;
     justify-content: space-between;
     li {
-      height: 416px;
-      background-position: center;
-      background-size: cover;
-      text-indent: 101%;
-      white-space: nowrap;
-      overflow: hidden;
-    }
-    .brand-item-1 {
-      margin: 0 auto;
-      width: 792px;
-      background-image: url("https://hexschool.github.io/webLayoutTraining1st/week2/brand_img1.png");
-    }
-    .brand-item-2 {
       width: 588px;
-      background-image: url("https://hexschool.github.io/webLayoutTraining1st/week2/brand_img2.png");
+      &:first-child {
+        margin: 0 auto;
+        width: 792px;
+        margin-bottom: 40px;
+      }
     }
-    .brand-item-3 {
+  }
+}
+
+.works {
+  padding-bottom: 144px;
+  h3 {
+    margin-bottom: 16px;
+  }
+  h4 {
+    font-size: 20px;
+    line-height: 30px;
+    text-align: center;
+    margin-bottom: 56px;
+  }
+  .works-list {
+    display: flex;
+    flex-wrap: wrap;
+    width: 1200px;
+    justify-content: space-between;
+    h5 {
+      margin-top: 16px;
+      font-size: 20px;
+      line-height: 42px;
+      text-align: center;
+    }
+    .first-row {
+      width: 384px;
+      margin-bottom: 48px;
+    }
+    .second-row {
       width: 588px;
-      background-image: url("https://hexschool.github.io/webLayoutTraining1st/week2/brand_img3.png");
+      margin-bottom: 48px;
+    }
+    .third-row {
+      width: 384px;
+    }
+  }
+}
+
+.contact {
+  background-color: black;
+  color: white;
+  padding: 64px 0;
+  h3 {
+    margin-bottom: 16px;
+  }
+  .contact-list {
+    font-size: 24px;
+    line-height: 36px;
+    li {
+      margin-bottom: 16px;
+      a {
+        color: white;
+        font-size: 24px;
+        line-height: 36px;
+        text-decoration: none;
+        &:hover {
+          text-decoration: underline;
+        }
+      }
     }
   }
 }
